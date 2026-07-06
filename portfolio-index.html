@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaleen Gorakatar — AI Engineer & Statistician</title>
+<meta name="description" content="Shaleen Gorakatar — Statistics student at UBC building production AI systems. AI Engineer intern at MetricStream.">
+<style>
+  :root{
+    --bg:#0b0e14; --surface:#12161f; --border:#1f2633;
+    --text:#e6e9ef; --muted:#8b93a7; --accent:#5eead4; --accent2:#818cf8;
+    --mono:'SF Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: light){
+    :root{--bg:#fafaf8;--surface:#ffffff;--border:#e5e7eb;--text:#111827;--muted:#6b7280;--accent:#0d9488;--accent2:#4f46e5;}
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;line-height:1.65}
+  .wrap{max-width:860px;margin:0 auto;padding:0 24px}
+  nav{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);z-index:10}
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+  nav .logo{font-family:var(--mono);font-size:.95rem;color:var(--accent);font-weight:600}
+  nav ul{display:flex;gap:22px;list-style:none}
+  nav a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+  nav a:hover{color:var(--accent)}
+  header{padding:96px 0 72px}
+  .kicker{font-family:var(--mono);color:var(--accent);font-size:.85rem;margin-bottom:14px}
+  h1{font-size:clamp(2rem,5vw,3rem);line-height:1.15;letter-spacing:-.02em}
+  .sub{font-size:clamp(1rem,2.5vw,1.2rem);color:var(--muted);margin-top:16px;max-width:620px}
+  .cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:10px 20px;border-radius:8px;font-size:.9rem;text-decoration:none;border:1px solid var(--accent);transition:all .2s}
+  .btn.primary{background:var(--accent);color:var(--bg);font-weight:600}
+  .btn.ghost{color:var(--accent)}
+  .btn:hover{transform:translateY(-2px)}
+  section{padding:56px 0;border-top:1px solid var(--border)}
+  h2{font-size:1.35rem;margin-bottom:28px;display:flex;align-items:center;gap:10px}
+  h2::before{content:'';display:block;width:26px;height:2px;background:var(--accent)}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:18px;transition:border-color .2s}
+  .card:hover{border-color:var(--accent)}
+  .card .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  .card h3{font-size:1.05rem}
+  .card .role{color:var(--accent2);font-size:.9rem}
+  .card .date{font-family:var(--mono);color:var(--muted);font-size:.8rem;white-space:nowrap}
+  .card p{color:var(--muted);font-size:.93rem;margin-top:8px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .tag{font-family:var(--mono);font-size:.72rem;color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent);border-radius:999px;padding:3px 10px}
+  .links a{font-family:var(--mono);font-size:.8rem;color:var(--accent2);text-decoration:none;margin-right:14px}
+  .links a:hover{text-decoration:underline}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .skill-group h3{font-size:.85rem;font-family:var(--mono);color:var(--accent);margin-bottom:10px}
+  .skill-group ul{list-style:none;color:var(--muted);font-size:.9rem}
+  .skill-group li{padding:3px 0}
+  footer{padding:48px 0;text-align:center;color:var(--muted);font-size:.85rem}
+  footer a{color:var(--accent);text-decoration:none}
+  .about p{color:var(--muted);max-width:680px;margin-bottom:14px}
+  .about strong{color:var(--text)}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+  <span class="logo">sg</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div></nav>
+
+<header class="wrap">
+  <p class="kicker">Hi, my name is</p>
+  <h1>Shaleen Gorakatar.<br>I build AI systems that ship.</h1>
+  <p class="sub">Statistics major at UBC and AI Engineer intern at MetricStream, where I build agentic AI and RAG systems used by Fortune 500 clients. Graduating May 2027 — looking for AI engineering / data science roles.</p>
+  <div class="cta">
+    <a class="btn primary" href="mailto:gorakatarshaleen@gmail.com">Get in touch</a>
+    <a class="btn ghost" href="https://www.linkedin.com/in/shaleengorakatar" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn ghost" href="https://github.com/shaleengorakatar" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn ghost" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+  </div>
+</header>
+
+<section id="about"><div class="wrap about">
+  <h2>About</h2>
+  <p>I'm a statistician who ended up shipping production AI. Over 14 months of co-op I've built <strong>RAG pipelines over millions of documents</strong>, <strong>agentic workflows for enterprise compliance</strong>, and <strong>data platforms on AWS</strong> — and along the way learned that the hard part of AI isn't the model, it's the evaluation, reliability, and plumbing around it.</p>
+  <p>My statistics background (inference, stochastic processes, applied ML) means I care about whether a number is actually true — precision metrics, eval methodology, and honest baselines are my thing.</p>
+</div></section>
+
+<section id="experience"><div class="wrap">
+  <h2>Experience</h2>
+  <div class="card">
+    <div class="top"><div><h3>MetricStream</h3><span class="role">AI Engineer Intern</span></div><span class="date">May 2025 — Present</span></div>
+    <p>Built agentic AI applications and RAG pipelines for Fortune 500 GRC clients. Designed retrieval over 1.2M+ paragraphs with pgvector, ran evaluation and prompt-engineering cycles to cut hallucinations, and shipped parallel FastAPI + Whisper pipelines that reduced authoring time across 60+ global sites.</p>
+    <div class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">pgvector</span><span class="tag">FastAPI</span><span class="tag">Tool Calling</span><span class="tag">LLM Evals</span></div>
+  </div>
+  <div class="card">
+    <div class="top"><div><h3>Genpact</h3><span class="role">Data Engineer Intern</span></div><span class="date">Jul — Sep 2024</span></div>
+    <p>Built data ingestion into a lakehouse with AWS Glue and S3, wrote a PySpark table-health monitor that auto-detected skew during a Microsoft Fabric migration, and shipped Power BI dashboards for pipeline observability.</p>
+    <div class="tags"><span class="tag">PySpark</span><span class="tag">AWS Glue</span><span class="tag">S3</span><span class="tag">SQL</span><span class="tag">Power BI</span></div>
+  </div>
+  <div class="card">
+    <div class="top"><div><h3>UBC Quantico</h3><span class="role">Co-founder & Lead Analyst</span></div><span class="date">Nov 2024 — Sep 2025</span></div>
+    <p>Co-founded UBC's quantitative research club. Led a team of analysts building algorithmic trading strategies and Python backtesting frameworks for portfolio optimization and risk metrics.</p>
+    <div class="tags"><span class="tag">Python</span><span class="tag">Backtesting</span><span class="tag">Quant Research</span></div>
+  </div>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2>Projects</h2>
+  <div class="card">
+    <div class="top"><div><h3>CricMaxx</h3><span class="role">Real-time cricket prediction markets</span></div><span class="date">2025 — Present</span></div>
+    <p>A live prediction-market platform: FIFO price-time priority matching engine (limit + market orders), WebSocket L2 order-book streaming, oracle-based market resolution from live player stats, and PostgreSQL row-level security for atomic wallet operations across 1,200+ markets.</p>
+    <div class="tags"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span><span class="tag">WebSockets</span></div>
+    <p class="links" style="margin-top:12px"><a href="#" target="_blank" rel="noopener">Live demo →</a><a href="#" target="_blank" rel="noopener">Code →</a></p>
+  </div>
+  <div class="card">
+    <div class="top"><div><h3>Bronson 🏆</h3><span class="role">Cursor Hackathon winner ($600) — agentic workflow orchestrator</span></div><span class="date">May 2026</span></div>
+    <p>Built in a weekend with a team: an orchestrator for agentic workflows — YAML-defined DAG pipelines, human-in-the-loop approval gates, and real-time execution monitoring over SSE. Next.js UI, Express orchestrator, shared Zod schemas in an npm-workspaces monorepo.</p>
+    <div class="tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">Express</span><span class="tag">SSE</span><span class="tag">Agents</span><span class="tag">Zod</span></div>
+    <p class="links" style="margin-top:12px"><a href="https://github.com/cursor-team-bronson/bronson" target="_blank" rel="noopener">Code →</a></p>
+  </div>
+  <div class="card">
+    <div class="top"><div><h3>RAG From Scratch</h3><span class="role">Retrieval pipeline, no frameworks</span></div><span class="date">Coming Aug 2026</span></div>
+    <p>A retrieval-augmented generation system built from first principles — chunking, embeddings, vector search, and an honest evaluation harness with labeled queries and reported precision/recall. Dockerized, CI via GitHub Actions, deployed.</p>
+    <div class="tags"><span class="tag">Python</span><span class="tag">Embeddings</span><span class="tag">Evals</span><span class="tag">Docker</span><span class="tag">CI/CD</span></div>
+  </div>
+  <div class="card">
+    <div class="top"><div><h3>End-to-End ML</h3><span class="role">Statistical modeling in production</span></div><span class="date">Coming Sep 2026</span></div>
+    <p>Full-lifecycle machine learning on real, messy data: EDA, feature engineering, model selection with proper cross-validation, MLflow experiment tracking, and a deployed inference API — leaning into the statistics degree.</p>
+    <div class="tags"><span class="tag">scikit-learn</span><span class="tag">MLflow</span><span class="tag">FastAPI</span><span class="tag">Statistics</span></div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2>Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-group"><h3>// languages</h3><ul><li>Python (PySpark)</li><li>SQL</li><li>R</li><li>TypeScript / JavaScript</li></ul></div>
+    <div class="skill-group"><h3>// ai & ml</h3><ul><li>RAG & agentic workflows</li><li>LLM tool calling & evals</li><li>scikit-learn, Hugging Face</li><li>Prompt engineering</li></ul></div>
+    <div class="skill-group"><h3>// backend & cloud</h3><ul><li>FastAPI, REST APIs</li><li>PostgreSQL, pgvector, Supabase</li><li>AWS (S3, Glue, Redshift)</li><li>Docker, GitHub Actions</li></ul></div>
+    <div class="skill-group"><h3>// statistics</h3><ul><li>Statistical inference</li><li>Stochastic processes</li><li>Experiment design</li><li>Backtesting & risk metrics</li></ul></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h2>Contact</h2>
+  <p style="color:var(--muted);max-width:600px">I'm looking for AI engineering and data science roles in Canada starting 2027, and always happy to talk about RAG evals, prediction markets, or cricket.</p>
+  <div class="cta"><a class="btn primary" href="mailto:gorakatarshaleen@gmail.com">gorakatarshaleen@gmail.com</a></div>
+</div></section>
+
+<footer>
+  <p>Built by Shaleen Gorakatar · <a href="https://github.com/shaleengorakatar" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/shaleengorakatar" target="_blank" rel="noopener">LinkedIn</a></p>
+</footer>
+</body>
+</html>
