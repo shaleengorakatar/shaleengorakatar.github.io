@@ -2,14 +2,19 @@
 <html lang="en" data-theme="night">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shaleen Gorakatar · AI Engineer & Statistician</title>
-<meta name="description" content="Shaleen Gorakatar · Statistics major at UBC building production AI systems. Agentic AI & RAG at MetricStream, prediction markets at CricMaxx.">
-<meta property="og:title" content="Shaleen Gorakatar · AI Engineer & Statistician">
-<meta property="og:description" content="Statistics major at UBC building production AI systems. I build AI systems and audit the numbers.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Shaleen Gorakatar · AI Engineer & Data Scientist</title>
+<meta name="description" content="Shaleen Gorakatar, UBC Statistics '27. AI engineering, AI automation, data science and data engineering: RAG and agentic LLM workflows at MetricStream, AWS data pipelines at Genpact, and a real-time prediction-markets exchange.">
+<meta property="og:title" content="Shaleen Gorakatar · AI Engineer & Data Scientist">
+<meta property="og:description" content="I build LLM agents and data pipelines, and measure whether they work. UBC Statistics, graduating May 2027.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://shaleengorakatar.github.io/">
+<meta name="theme-color" content="#0A0C10">
 <script>/* set theme before first paint to avoid flash */
 try{var t=localStorage.getItem('sg-theme');if(!t&&window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches)t='day';if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Shaleen Gorakatar","url":"https://shaleengorakatar.github.io/","jobTitle":"AI Engineer","alumniOf":{"@type":"CollegeOrUniversity","name":"University of British Columbia"},"address":{"@type":"PostalAddress","addressLocality":"Vancouver","addressRegion":"BC","addressCountry":"CA"},"sameAs":["https://github.com/shaleengorakatar","https://www.linkedin.com/in/shaleengorakatar"]}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,18 +28,20 @@ try{var t=localStorage.getItem('sg-theme');if(!t&&window.matchMedia&&matchMedia(
   --line:#1C222E;
   --line-strong:#2A3242;
   --text:#E8EBF0;
-  --muted:#7E8798;
-  --faint:#4A5261;
-  --bid:#2DD4A7;        /* up / settled / verified */
+  --muted:#8A93A4;
+  --faint:#566070;
+  --bid:#2DD4A7;        /* up / shipped / verified */
   --bid-dim:rgba(45,212,167,.12);
-  --ask:#E8A33D;        /* open / pending / down */
+  --ask:#E8A33D;        /* in progress / pending */
   --ask-dim:rgba(232,163,61,.12);
   --grid:rgba(126,135,152,.07);
   --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
-  --disp:'Schibsted Grotesk',system-ui,-apple-system,sans-serif;
+  --disp:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
   /* spacing scale */
   --s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:40px; --s6:64px; --s7:104px;
   --rail:284px;
+  --gutter:var(--s5);
+  --topbar:0px;
 }
 html[data-theme="day"]{
   --bg:#F5F4F0;
@@ -43,8 +50,8 @@ html[data-theme="day"]{
   --line:#E0DDD5;
   --line-strong:#C9C5BA;
   --text:#14181F;
-  --muted:#5C6470;
-  --faint:#9AA0AB;
+  --muted:#545C68;
+  --faint:#8C929D;
   --bid:#0B7D62;
   --bid-dim:rgba(11,125,98,.10);
   --ask:#A05C00;
@@ -53,32 +60,35 @@ html[data-theme="day"]{
 }
 /* ============ BASE ============ */
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth; -webkit-text-size-adjust:100%; text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} }
 body{
   background:var(--bg); color:var(--text);
   font-family:var(--disp); font-size:16px; line-height:1.6;
   -webkit-font-smoothing:antialiased;
-  transition:background .35s ease, color .35s ease;
+  overflow-x:hidden;
+  transition:background-color .35s ease, color .35s ease;
 }
 ::selection{background:var(--bid); color:var(--bg)}
 a{color:inherit}
+button{font:inherit}
 :focus-visible{outline:2px solid var(--bid); outline-offset:3px; border-radius:2px}
 .mono{font-family:var(--mono)}
+.skip{position:absolute; left:-9999px; top:8px; z-index:100; background:var(--bid); color:var(--bg); padding:8px 12px; font-family:var(--mono); font-size:.75rem}
+.skip:focus{left:8px}
 
-/* ============ LEFT RAIL ============ */
+/* ============ LEFT RAIL (desktop) ============ */
 .rail{
   position:fixed; inset:0 auto 0 0; width:var(--rail);
   border-right:1px solid var(--line);
   display:flex; flex-direction:column; justify-content:space-between;
-  padding:var(--s4) var(--s4) var(--s4) var(--s4); z-index:50; background:var(--bg);
-  transition:background .35s ease, border-color .35s ease;
+  padding:var(--s4); z-index:50; background:var(--bg);
+  transition:background-color .35s ease, border-color .35s ease;
 }
-.rail .logo{
-  font-family:var(--mono); font-weight:500; font-size:.95rem;
-  text-decoration:none; letter-spacing:.06em;
-}
-.rail .logo b{color:var(--bid); font-weight:500}
+.logo{font-family:var(--mono); font-weight:500; font-size:.95rem; text-decoration:none; letter-spacing:.06em}
+.logo b{color:var(--bid); font-weight:500}
+.rail .who{margin-top:var(--s3); font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--faint); line-height:1.9}
+.rail .who b{color:var(--muted); font-weight:400}
 .rail nav{width:100%}
 .rail nav ul{list-style:none; display:flex; flex-direction:column; border-top:1px solid var(--line)}
 .rail nav a{
@@ -86,37 +96,34 @@ a{color:inherit}
   font-family:var(--mono); font-size:.82rem; letter-spacing:.14em;
   color:var(--muted); text-decoration:none; padding:15px 10px;
   border-bottom:1px solid var(--line);
-  transition:color .18s ease, background .18s ease, padding-left .18s ease;
+  transition:color .18s ease, background-color .18s ease, padding-left .18s ease;
 }
-.rail nav a .tick{
-  color:var(--bid); font-size:.72rem;
-  opacity:0; transform:translateX(-6px);
-  transition:opacity .18s ease, transform .18s ease;
+.rail nav a .tick{color:var(--bid); font-size:.72rem; opacity:0; transform:translateX(-6px); transition:opacity .18s ease, transform .18s ease}
+.rail nav a.active{color:var(--text); background:var(--surface); padding-left:14px}
+.rail nav a.active .tick{opacity:1; transform:none}
+@media (hover:hover){
+  .rail nav a:hover{color:var(--text); background:var(--surface); padding-left:14px}
+  .rail nav a:hover .tick{opacity:1; transform:none}
 }
-.rail nav a:hover, .rail nav a.active{
-  color:var(--text); background:var(--surface); padding-left:14px;
-}
-.rail nav a:hover .tick, .rail nav a.active .tick{opacity:1; transform:none}
 .rail .foot{display:flex; flex-direction:column; gap:var(--s3); border-top:1px solid var(--line); padding-top:var(--s3)}
 .rail .clock{font-family:var(--mono); font-size:.72rem; color:var(--faint); letter-spacing:.06em; line-height:2}
 .rail .clock b{color:var(--muted); font-weight:400}
+.dotlive{color:var(--bid)}
 
 /* theme toggle */
 .toggle{
-  display:flex; align-items:center; gap:8px;
+  display:inline-flex; align-items:center; gap:8px;
   font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--muted);
   background:none; border:1px solid var(--line); border-radius:999px;
   padding:6px 10px; cursor:pointer; width:fit-content;
   transition:border-color .2s ease, color .2s ease;
+  -webkit-tap-highlight-color:transparent;
 }
-.toggle:hover{border-color:var(--line-strong); color:var(--text)}
-.toggle .pip{
-  width:26px; height:13px; border-radius:999px; background:var(--line);
-  position:relative; transition:background .25s ease;
-}
+@media (hover:hover){ .toggle:hover{border-color:var(--line-strong); color:var(--text)} }
+.toggle .pip{width:26px; height:13px; border-radius:999px; background:var(--line); position:relative; flex:none; transition:background-color .25s ease}
 .toggle .pip::after{
   content:''; position:absolute; top:2px; left:2px; width:9px; height:9px;
-  border-radius:50%; background:var(--bid); transition:transform .25s ease;
+  border-radius:50%; background:var(--bid); transition:transform .25s ease, background-color .25s ease;
 }
 html[data-theme="day"] .toggle .pip::after{transform:translateX(13px); background:var(--ask)}
 
@@ -125,47 +132,67 @@ html[data-theme="day"] .toggle .pip::after{transform:translateX(13px); backgroun
 
 /* ============ MAIN ============ */
 main{margin-left:var(--rail)}
-.wrap{max-width:980px; margin:0 auto; padding:0 var(--s5)}
+.wrap{max-width:1000px; margin:0 auto; padding-left:var(--gutter); padding-right:var(--gutter)}
+section, header.hero{scroll-margin-top:calc(var(--topbar) + 8px)}
 
 /* ============ HERO ============ */
-.hero{position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden}
-#tape{position:absolute; inset:0; width:100%; height:100%; display:block}
-.hero .inner{position:relative; z-index:2; padding:var(--s7) 0 var(--s6); width:100%}
-.kicker{
-  font-family:var(--mono); font-size:.75rem; letter-spacing:.14em;
-  color:var(--muted); margin-bottom:var(--s4);
+.hero{
+  position:relative; min-height:100vh; min-height:100svh;
+  display:flex; align-items:center; overflow:hidden;
+  /* static chart grid lives in CSS so the canvas only draws the line */
+  background-image:linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size:100% calc(100% / 6);
+  contain:paint;
 }
+.tapewrap{position:absolute; inset:0; overflow:hidden; pointer-events:none; will-change:transform}
+.tapeinner{position:absolute; inset:0; will-change:transform}
+#tape{position:absolute; inset:0; width:100%; height:100%; display:block}
+.pen{position:absolute; left:0; top:0; z-index:1; width:7px; height:7px; margin:-3.5px 0 0 -3.5px; border-radius:50%; background:var(--bid); pointer-events:none; will-change:transform; transition:opacity .3s ease}
+@media (max-width:760px){ .pen{opacity:.6} }
+.hero .inner{position:relative; z-index:2; padding-top:var(--s7); padding-bottom:var(--s6); width:100%}
+.kicker{font-family:var(--mono); font-size:.75rem; letter-spacing:.14em; color:var(--muted); margin-bottom:var(--s4)}
 .kicker b{color:var(--bid); font-weight:400}
+.kicker span{white-space:nowrap}
 h1{
-  font-size:clamp(2.4rem,5.8vw,4.4rem); line-height:1.04;
-  letter-spacing:-.03em; font-weight:700; max-width:20ch;
+  font-size:clamp(2.15rem,5.1vw,4.1rem); line-height:1.05;
+  letter-spacing:-.03em; font-weight:700; max-width:19ch;
+  text-wrap:balance;
 }
 h1 em{font-style:normal; color:var(--bid)}
-.hero .sub{
-  margin-top:var(--s4); max-width:52ch; color:var(--muted);
-  font-size:clamp(1rem,1.6vw,1.125rem); line-height:1.65;
+.hero .sub{margin-top:var(--s4); max-width:56ch; color:var(--muted); font-size:clamp(1rem,1.5vw,1.125rem); line-height:1.65}
+.hero .sub strong{color:var(--text); font-weight:500}
+.seeking{
+  margin-top:var(--s4); display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.1em;
 }
-.hero .cta{margin-top:var(--s5); display:flex; gap:var(--s3); flex-wrap:wrap; align-items:center}
+.seeking .lbl{color:var(--faint); margin-right:4px}
+.chip{border:1px solid var(--line-strong); color:var(--text); border-radius:2px; padding:3px 8px; background:var(--bg)}
+.hero .cta{margin-top:var(--s5); display:flex; gap:12px var(--s3); flex-wrap:wrap; align-items:center}
 .btn{
   font-family:var(--mono); font-size:.78rem; letter-spacing:.08em;
   text-decoration:none; padding:11px 20px; border-radius:3px;
-  border:1px solid var(--line-strong); color:var(--text);
+  border:1px solid var(--line-strong); color:var(--text); background-color:var(--bg);
   display:inline-block;
   background-image:linear-gradient(var(--bid),var(--bid));
   background-repeat:no-repeat; background-size:0% 100%;
   transition:background-size .25s ease, color .2s ease, border-color .2s ease;
+  -webkit-tap-highlight-color:transparent;
 }
-.btn:hover{background-size:100% 100%; color:var(--bg); border-color:var(--bid)}
-.btn.primary{background:var(--bid); border-color:var(--bid); color:var(--bg); font-weight:500}
-.btn.primary:hover{filter:brightness(1.08)}
+.btn.primary{background-color:var(--bid); border-color:var(--bid); color:var(--bg); font-weight:500}
+@media (hover:hover){
+  .btn:hover{background-size:100% 100%; color:var(--bg); border-color:var(--bid)}
+  .btn.primary:hover{filter:brightness(1.08)}
+}
 .hero .facts{
-  margin-top:var(--s6); display:flex; flex-wrap:wrap; gap:var(--s2) var(--s4);
-  font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; color:var(--faint);
+  margin-top:var(--s6); display:grid; grid-template-columns:repeat(4, minmax(0,auto)); justify-content:start;
+  gap:var(--s3) var(--s5);
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; color:var(--faint);
 }
-.hero .facts span b{color:var(--muted); font-weight:400}
+.hero .facts div{display:flex; flex-direction:column; gap:2px; border-left:1px solid var(--line-strong); padding-left:12px}
+.hero .facts b{color:var(--text); font-weight:500; font-size:1rem; letter-spacing:.02em}
 #readout{
   position:absolute; z-index:2; right:var(--s5); bottom:var(--s4);
-  font-family:var(--mono); font-size:.68rem; letter-spacing:.08em; color:var(--faint);
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; color:var(--faint);
   pointer-events:none; text-align:right; line-height:1.8;
 }
 #readout b{color:var(--bid); font-weight:400}
@@ -173,244 +200,282 @@ h1 em{font-style:normal; color:var(--bid)}
 /* ============ SECTIONS ============ */
 section{padding:var(--s7) 0 var(--s2)}
 .sechead{
-  display:flex; align-items:baseline; justify-content:space-between;
-  gap:var(--s3); border-bottom:1px solid var(--line-strong);
-  padding-bottom:var(--s3); margin-bottom:var(--s5);
-  position:relative;
+  display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between;
+  gap:var(--s2) var(--s3); border-bottom:1px solid var(--line-strong);
+  padding-bottom:var(--s3); margin-bottom:var(--s5); position:relative;
 }
 .sechead::after{ /* chart-axis tick marks along the rule */
   content:''; position:absolute; left:0; right:0; bottom:-6px; height:6px;
   background-image:repeating-linear-gradient(90deg, var(--line-strong) 0 1px, transparent 1px 28px);
 }
-.sechead h2{
-  font-size:clamp(1.6rem,3vw,2.2rem); letter-spacing:-.02em; font-weight:700;
-}
-.sechead .meta{
-  font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; color:var(--faint);
-  white-space:nowrap;
-}
+.sechead h2{font-size:clamp(1.6rem,3vw,2.2rem); letter-spacing:-.02em; font-weight:700}
+.sechead .meta{font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; color:var(--faint)}
 .sechead .meta b{color:var(--bid); font-weight:400}
+.sublabel{font-family:var(--mono); font-size:.68rem; letter-spacing:.14em; color:var(--faint); margin:var(--s6) 0 var(--s3); display:flex; gap:var(--s3); align-items:center}
+.sublabel::after{content:''; flex:1; height:1px; background:var(--line)}
 
 /* ============ ABOUT ============ */
-.about-grid{display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:var(--s6)}
-.about-grid p{color:var(--muted); margin-bottom:var(--s3); max-width:58ch}
+.about-grid{display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); gap:var(--s6)}
+.about-grid p{color:var(--muted); margin-bottom:var(--s3); max-width:60ch}
 .about-grid p strong{color:var(--text); font-weight:500}
-.thesis{
-  border-left:2px solid var(--bid); padding:var(--s1) 0 var(--s1) var(--s4);
-  align-self:start;
-}
+.thesis{border-left:2px solid var(--bid); padding:var(--s1) 0 var(--s1) var(--s4); align-self:start}
 .thesis .label{font-family:var(--mono); font-size:.68rem; letter-spacing:.14em; color:var(--faint); margin-bottom:var(--s2)}
-.thesis p{font-size:1.05rem; line-height:1.55; color:var(--text)}
+.thesis p{font-size:1.08rem; line-height:1.55; color:var(--text); margin-bottom:var(--s4)}
+.thesis ol{list-style:none; counter-reset:t; display:flex; flex-direction:column; gap:10px; font-size:.9rem; color:var(--muted)}
+.thesis li{counter-increment:t; display:grid; grid-template-columns:28px minmax(0,1fr)}
+.thesis li::before{content:'0' counter(t); font-family:var(--mono); font-size:.68rem; color:var(--bid); padding-top:3px}
+
+/* ============ BOOK (shared ledger table: fit + skills) ============ */
+.book{border-top:1px solid var(--line-strong)}
+.brow, .bookhead{display:grid; grid-template-columns:180px minmax(0,1.5fr) minmax(0,.9fr); gap:var(--s4)}
+.brow{padding:var(--s4) 0; border-bottom:1px solid var(--line); transition:background-color .2s ease}
+@media (hover:hover){ .brow:hover{background:var(--surface)} }
+.brow .bk{font-family:var(--mono); font-size:.72rem; letter-spacing:.12em; color:var(--bid); padding-top:3px}
+.brow .bi{color:var(--text); font-size:.93rem; line-height:1.7}
+.brow .bi span{color:var(--muted)}
+.brow .bp{font-family:var(--mono); font-size:.68rem; letter-spacing:.06em; color:var(--faint); line-height:2; padding-top:3px}
+.bookhead{padding-bottom:var(--s2); font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; color:var(--faint)}
 
 /* ============ EXPERIENCE LEDGER ============ */
 .entry{
   display:grid; grid-template-columns:180px minmax(0,1fr); gap:var(--s4);
-  padding:var(--s4) 0; border-bottom:1px solid var(--line);
-  position:relative;
+  padding:var(--s5) 0; border-bottom:1px solid var(--line); position:relative;
 }
 .entry::before{
-  content:''; position:absolute; left:calc(-1 * var(--s4));
-  top:var(--s4); bottom:var(--s4); width:2px; background:var(--bid);
+  content:''; position:absolute; left:calc(-1 * var(--s3));
+  top:var(--s5); bottom:var(--s5); width:2px; background:var(--bid);
   transform:scaleY(0); transform-origin:top; transition:transform .3s ease;
 }
-.entry:hover::before{transform:scaleY(1)}
+@media (hover:hover){ .entry:hover::before{transform:scaleY(1)} }
 .entry .when{font-family:var(--mono); font-size:.72rem; letter-spacing:.06em; color:var(--faint); line-height:2; padding-top:5px}
-.entry .when .live{color:var(--bid)}
-.entry h3{font-size:1.15rem; font-weight:700; letter-spacing:-.01em}
-.entry .role{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; color:var(--bid); margin:var(--s1) 0 var(--s2)}
-.entry p{color:var(--muted); font-size:.95rem; max-width:62ch}
-.tags{
-  display:flex; flex-wrap:wrap; gap:var(--s1) var(--s2); margin-top:var(--s3);
-  font-family:var(--mono); font-size:.68rem; letter-spacing:.08em;
+.entry h3{font-size:1.25rem; font-weight:700; letter-spacing:-.01em}
+.entry .role{font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; color:var(--bid); margin:var(--s1) 0 var(--s3)}
+.entry .lede{color:var(--text); font-size:.98rem; max-width:64ch; margin-bottom:var(--s3)}
+.entry ul.pts{list-style:none; display:flex; flex-direction:column; gap:12px; max-width:68ch}
+.entry ul.pts li{display:grid; grid-template-columns:18px minmax(0,1fr); color:var(--muted); font-size:.94rem}
+.entry ul.pts li::before{content:'▸'; color:var(--bid); font-size:.7rem; padding-top:5px}
+.entry ul.pts b{color:var(--text); font-weight:500}
+.kpis{display:flex; flex-wrap:wrap; gap:8px; margin-top:var(--s4)}
+.kpi{
+  font-family:var(--mono); font-size:.66rem; letter-spacing:.08em; color:var(--muted);
+  border:1px solid var(--line); border-radius:3px; padding:6px 10px; display:flex; gap:8px; align-items:baseline;
 }
+.kpi b{color:var(--bid); font-weight:500; font-size:.82rem; letter-spacing:.02em}
+.tags{display:flex; flex-wrap:wrap; gap:var(--s1) var(--s2); margin-top:var(--s3); font-family:var(--mono); font-size:.68rem; letter-spacing:.08em}
 .tag{color:var(--faint); transition:color .2s ease}
 .tag + .tag::before{content:'/'; margin-right:var(--s2); color:var(--line-strong)}
-.entry:hover .tag, .position:hover .tag, .oppos:hover .tag{color:var(--muted)}
+@media (hover:hover){ .entry:hover .tag, .position:hover .tag, .oppos:hover .tag{color:var(--muted)} }
+.course{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--s3) var(--s4); margin-top:var(--s2)}
+.course h4{font-family:var(--mono); font-size:.66rem; letter-spacing:.12em; color:var(--faint); font-weight:400; margin-bottom:6px}
+.course p{color:var(--muted); font-size:.9rem; line-height:1.6}
 
 /* ============ POSITIONS (PROJECTS) ============ */
 .position{
-  display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
   gap:var(--s6); padding:var(--s6) 0; border-bottom:1px solid var(--line);
-  align-items:center;
+  align-items:start;
 }
 .position.flip .pbody{order:2}
 .position.flip .pvis{order:1}
-.pbody .pstat{
-  display:flex; gap:var(--s3); align-items:center; margin-bottom:var(--s3);
-  font-family:var(--mono); font-size:.66rem; letter-spacing:.12em;
-}
+.pstat{display:flex; flex-wrap:wrap; gap:8px var(--s3); align-items:center; margin-bottom:var(--s3); font-family:var(--mono); font-size:.66rem; letter-spacing:.12em}
 .badge{border-radius:2px; padding:3px 8px; font-weight:500}
 .badge.settled{color:var(--bid); background:var(--bid-dim)}
 .badge.open{color:var(--ask); background:var(--ask-dim)}
 .pstat .pdate{color:var(--faint)}
 .pbody h3{font-size:clamp(1.6rem,3vw,2.1rem); letter-spacing:-.02em; font-weight:700}
 .pbody h3 a{text-decoration:none; transition:color .18s ease}
-.pbody h3 a:hover{color:var(--bid)}
-.pbody .pline{font-family:var(--mono); font-size:.74rem; letter-spacing:.08em; color:var(--muted); margin-top:var(--s2)}
+@media (hover:hover){ .pbody h3 a:hover{color:var(--bid)} }
+.pbody .pline{font-family:var(--mono); font-size:.72rem; letter-spacing:.08em; color:var(--muted); margin-top:var(--s2)}
 .par{margin-top:var(--s4); display:flex; flex-direction:column; gap:var(--s3)}
-.par .row{display:grid; grid-template-columns:88px minmax(0,1fr); gap:var(--s3)}
-.par .k{font-family:var(--mono); font-size:.64rem; letter-spacing:.14em; color:var(--faint); padding-top:4px}
+.par .row{display:grid; grid-template-columns:96px minmax(0,1fr); gap:var(--s3)}
+.par .k{font-family:var(--mono); font-size:.62rem; letter-spacing:.14em; color:var(--faint); padding-top:4px}
 .par .v{color:var(--muted); font-size:.93rem}
 .par .v b{color:var(--text); font-weight:500}
-.plinks{margin-top:var(--s4); display:flex; gap:var(--s4)}
+.plinks{margin-top:var(--s4); display:flex; flex-wrap:wrap; gap:var(--s2) var(--s4)}
 .plinks a{
-  font-family:var(--mono); font-size:.74rem; letter-spacing:.08em;
-  color:var(--bid); text-decoration:none; border-bottom:1px solid transparent;
-  transition:border-color .18s ease;
+  font-family:var(--mono); font-size:.74rem; letter-spacing:.08em; color:var(--bid);
+  text-decoration:none; border-bottom:1px solid transparent; transition:border-color .18s ease;
+  padding:4px 0;
 }
-.plinks a:hover{border-color:var(--bid)}
+@media (hover:hover){ .plinks a:hover{border-color:var(--bid)} }
 
 /* project visuals */
-.pvis{
-  border:1px solid var(--line); border-radius:6px; background:var(--surface);
-  padding:var(--s4); transition:border-color .25s ease, background .35s ease;
-}
-.position:hover .pvis{border-color:var(--line-strong)}
-.pvis .vhead{
-  display:flex; justify-content:space-between; align-items:center;
-  font-family:var(--mono); font-size:.64rem; letter-spacing:.1em;
-  color:var(--faint); margin-bottom:var(--s3); gap:var(--s2);
-}
-.pvis .vhead .dot{width:6px; height:6px; border-radius:50%; background:var(--bid); display:inline-block; margin-right:6px}
+.pvis{border:1px solid var(--line); border-radius:6px; background:var(--surface); padding:var(--s4); transition:border-color .25s ease, background-color .35s ease; position:sticky; top:var(--s5)}
+@media (hover:hover){ .position:hover .pvis{border-color:var(--line-strong)} }
+.pvis .vhead{display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:.64rem; letter-spacing:.1em; color:var(--faint); margin-bottom:var(--s3); gap:var(--s2)}
+.pvis .vhead .dot{width:6px; height:6px; border-radius:50%; background:var(--bid); display:inline-block; margin-right:6px; vertical-align:middle}
 .pvis .cap{font-family:var(--mono); font-size:.62rem; letter-spacing:.06em; color:var(--faint); margin-top:var(--s3)}
+.pvis .stack{margin-top:var(--s3); border-top:1px dashed var(--line); padding-top:var(--s3); display:grid; grid-template-columns:auto minmax(0,1fr); gap:6px var(--s3); font-family:var(--mono); font-size:.64rem; letter-spacing:.06em}
+.pvis .stack dt{color:var(--faint)}
+.pvis .stack dd{color:var(--muted)}
 
 /* order book widget */
 .ob{display:flex; flex-direction:column; gap:2px; font-family:var(--mono); font-size:.72rem}
-.ob .obrow{
-  display:grid; grid-template-columns:56px 1fr 64px; gap:var(--s2);
-  padding:4px 6px; position:relative; border-radius:2px; overflow:hidden;
-  color:var(--muted);
-}
-.ob .obrow .depth{position:absolute; inset:0; transform-origin:right; z-index:0}
-.ob .obrow.a .depth{background:var(--ask-dim); transform-origin:left}
-.ob .obrow.b .depth{background:var(--bid-dim); transform-origin:left}
+.ob .obrow{display:grid; grid-template-columns:56px 1fr 64px; gap:var(--s2); padding:4px 6px; position:relative; border-radius:2px; overflow:hidden; color:var(--muted)}
+.ob .obrow .depth{position:absolute; inset:0; transform-origin:left; z-index:0; transition:transform .45s ease}
+.ob .obrow.a .depth{background:var(--ask-dim)}
+.ob .obrow.b .depth{background:var(--bid-dim)}
 .ob .obrow span{position:relative; z-index:1}
 .ob .obrow .px{font-weight:500}
 .ob .obrow.a .px{color:var(--ask)}
 .ob .obrow.b .px{color:var(--bid)}
 .ob .obrow .sz{text-align:right}
-.ob .spread{
-  display:flex; justify-content:space-between; padding:6px;
-  border-top:1px dashed var(--line); border-bottom:1px dashed var(--line);
-  color:var(--faint); font-size:.64rem; letter-spacing:.08em; margin:3px 0;
-}
+.ob .spread{display:flex; justify-content:space-between; padding:6px; border-top:1px dashed var(--line); border-bottom:1px dashed var(--line); color:var(--faint); font-size:.64rem; letter-spacing:.08em; margin:3px 0}
 .ob .spread b{color:var(--text); font-weight:500}
 
 /* DAG svg */
 .dag svg{width:100%; height:auto; display:block}
-.dag .node{fill:var(--surface); stroke:var(--line-strong); rx:4}
+.dag .node{fill:var(--surface); stroke:var(--line-strong)}
 .dag text{font-family:var(--mono); font-size:10.5px; fill:var(--muted); letter-spacing:.08em}
+.dag .wave{font-size:8.5px; fill:var(--faint)}
 .dag .gate rect{stroke:var(--ask)}
 .dag .gate text{fill:var(--ask)}
 .dag .edge{stroke:var(--line-strong); stroke-width:1.4; fill:none}
 .dag .pulse{stroke:var(--bid); stroke-width:1.4; fill:none; stroke-dasharray:6 58; animation:flow 2.6s linear infinite}
 .dag .pulse.d2{animation-delay:.85s}
 .dag .pulse.d3{animation-delay:1.7s}
+.dag.paused .pulse{animation-play-state:paused}
 @keyframes flow{to{stroke-dashoffset:-64}}
 @media (prefers-reduced-motion:reduce){ .dag .pulse{animation:none; stroke-dasharray:none; opacity:.35} }
 
-/* open positions */
-.opengrid{display:grid; grid-template-columns:1fr 1fr; gap:var(--s4); padding:var(--s6) 0}
-.oppos{
-  border:1px dashed var(--line-strong); border-radius:6px; padding:var(--s4);
-  transition:border-color .2s ease;
-}
-.oppos:hover{border-color:var(--ask)}
-.oppos .pstat{display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--s3); font-family:var(--mono); font-size:.64rem; letter-spacing:.12em}
+/* in-progress work */
+.opengrid{display:grid; grid-template-columns:1fr 1fr; gap:var(--s4); padding:var(--s3) 0 var(--s6)}
+.oppos{border:1px dashed var(--line-strong); border-radius:6px; padding:var(--s4); transition:border-color .2s ease; display:flex; flex-direction:column}
+@media (hover:hover){ .oppos:hover{border-color:var(--ask)} }
+.oppos .pstat{justify-content:space-between}
 .oppos .settle{color:var(--faint)}
-.oppos h3{font-size:1.2rem; letter-spacing:-.01em}
-.oppos p{color:var(--muted); font-size:.9rem; margin-top:var(--s2)}
-
-/* ============ SKILLS BOOK ============ */
-.book{border-top:1px solid var(--line-strong)}
-.brow{
-  display:grid; grid-template-columns:170px minmax(0,1.4fr) minmax(0,1fr);
-  gap:var(--s4); padding:var(--s4) 0; border-bottom:1px solid var(--line);
-  transition:background .2s ease;
-}
-.brow:hover{background:var(--surface)}
-.brow .bk{font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; color:var(--bid); padding-top:3px}
-.brow .bi{color:var(--text); font-size:.93rem; line-height:1.7}
-.brow .bp{font-family:var(--mono); font-size:.7rem; letter-spacing:.04em; color:var(--faint); line-height:2; padding-top:3px}
-.bookhead{
-  display:grid; grid-template-columns:170px minmax(0,1.4fr) minmax(0,1fr);
-  gap:var(--s4); padding-bottom:var(--s2);
-  font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; color:var(--faint);
-}
+.oppos h3{font-size:1.25rem; letter-spacing:-.01em}
+.oppos .why{color:var(--text); font-size:.93rem; margin-top:var(--s2)}
+.oppos ul{list-style:none; margin-top:var(--s3); display:flex; flex-direction:column; gap:8px}
+.oppos li{display:grid; grid-template-columns:16px minmax(0,1fr); color:var(--muted); font-size:.88rem}
+.oppos li::before{content:'○'; color:var(--ask); font-size:.62rem; padding-top:5px}
+.oppos .tags{margin-top:auto; padding-top:var(--s3)}
 
 /* ============ CONTACT ============ */
-.contact p{color:var(--muted); max-width:52ch; margin-bottom:var(--s5)}
+.contact p{color:var(--muted); max-width:56ch; margin-bottom:var(--s5)}
+.contact p strong{color:var(--text); font-weight:500}
 .bigmail{
-  font-family:var(--mono); font-size:clamp(1rem,2.6vw,1.6rem); letter-spacing:-.01em;
+  font-family:var(--mono); font-size:clamp(.95rem,2.6vw,1.6rem); letter-spacing:-.01em;
   color:var(--text); text-decoration:none; border-bottom:2px solid var(--bid);
-  padding-bottom:4px; transition:color .2s ease;
-  overflow-wrap:anywhere;
+  padding-bottom:4px; transition:color .2s ease; overflow-wrap:anywhere;
 }
-.bigmail:hover{color:var(--bid)}
-.contact .cta{margin-top:var(--s5); display:flex; gap:var(--s3); flex-wrap:wrap}
+@media (hover:hover){ .bigmail:hover{color:var(--bid)} }
+.contact .cta{margin-top:var(--s5); display:flex; gap:12px var(--s3); flex-wrap:wrap}
 
 /* ============ FOOTER ============ */
 footer{padding:var(--s6) 0 var(--s5); margin-top:var(--s6); border-top:1px solid var(--line)}
-footer .wrap{
-  display:flex; justify-content:space-between; gap:var(--s3); flex-wrap:wrap;
-  font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; color:var(--faint);
-}
+footer .wrap{display:flex; justify-content:space-between; gap:var(--s3); flex-wrap:wrap; font-family:var(--mono); font-size:.66rem; letter-spacing:.1em; color:var(--faint)}
 footer a{color:var(--muted); text-decoration:none}
-footer a:hover{color:var(--bid)}
+@media (hover:hover){ footer a:hover{color:var(--bid)} }
 
 /* ============ REVEALS ============ */
-.rv{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease}
+.rv{opacity:0; transform:translateY(14px); transition:opacity .55s ease, transform .55s ease}
 .rv.in{opacity:1; transform:none}
+.no-js .rv{opacity:1; transform:none}
 @media (prefers-reduced-motion:reduce){
   .rv{opacity:1; transform:none; transition:none}
-  .btn:hover{transform:none}
   *{transition-duration:.01ms !important}
 }
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:1120px){
-  :root{--rail:0px}
+  :root{--rail:0px; --topbar:57px}
   .rail{display:none}
   main{margin-left:0}
   .topbar{
-    display:flex; position:sticky; top:0; z-index:50;
+    display:flex; position:sticky; top:0; z-index:60;
     align-items:center; justify-content:space-between; gap:var(--s3);
-    padding:12px var(--s4); background:var(--bg);
-    border-bottom:1px solid var(--line);
-    transition:background .35s ease;
+    padding:8px var(--gutter); padding-left:max(var(--gutter), env(safe-area-inset-left)); padding-right:max(var(--gutter), env(safe-area-inset-right));
+    min-height:var(--topbar);
+    background:var(--bg); border-bottom:1px solid var(--line);
+    transition:background-color .35s ease, border-color .35s ease;
   }
-  .topbar .logo{font-family:var(--mono); font-size:.85rem; text-decoration:none; letter-spacing:.06em}
-  .topbar .logo b{color:var(--bid); font-weight:500}
-  .topbar nav{overflow-x:auto; scrollbar-width:none}
-  .topbar nav::-webkit-scrollbar{display:none}
-  .topbar nav ul{display:flex; gap:var(--s3); list-style:none}
-  .topbar nav a{font-family:var(--mono); font-size:.7rem; letter-spacing:.08em; color:var(--muted); text-decoration:none; white-space:nowrap}
-  .topbar nav a:hover{color:var(--text)}
-  .hero{min-height:88vh}
+  .topbar .tb-right{display:flex; align-items:center; gap:10px}
+  .topbar .toggle{min-height:40px; padding:6px 12px}
+  .menubtn{
+    display:inline-flex; align-items:center; gap:10px; min-height:40px;
+    font-family:var(--mono); font-size:.7rem; letter-spacing:.12em; color:var(--text);
+    background:none; border:1px solid var(--line); border-radius:999px; padding:6px 14px; cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .menubtn .bars{position:relative; width:14px; height:9px}
+  .menubtn .bars i{position:absolute; left:0; right:0; height:1.5px; background:currentColor; transition:transform .22s ease, top .22s ease}
+  .menubtn .bars i:first-child{top:0}
+  .menubtn .bars i:last-child{top:7px}
+  .menubtn[aria-expanded="true"] .bars i:first-child{top:3.5px; transform:rotate(45deg)}
+  .menubtn[aria-expanded="true"] .bars i:last-child{top:3.5px; transform:rotate(-45deg)}
+  .mnav{
+    position:absolute; left:0; right:0; top:100%;
+    background:var(--bg); border-bottom:1px solid var(--line-strong);
+    padding:0 var(--gutter) var(--s4);
+    visibility:hidden; opacity:0; transform:translateY(-6px);
+    transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+    max-height:calc(100svh - var(--topbar)); overflow-y:auto;
+  }
+  .mnav.open{visibility:visible; opacity:1; transform:none; transition:opacity .2s ease, transform .2s ease}
+  .mnav ul{list-style:none}
+  .mnav a{
+    display:flex; justify-content:space-between; align-items:center; min-height:52px;
+    font-family:var(--mono); font-size:.85rem; letter-spacing:.14em; color:var(--text); text-decoration:none;
+    border-bottom:1px solid var(--line);
+  }
+  .mnav a span{color:var(--bid); font-size:.75rem}
+  .mnav .mstatus{margin-top:var(--s3); font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--faint)}
+  .pvis{position:static}
 }
-@media (max-width:760px){
-  .wrap{padding:0 var(--s4)}
-  section{padding:var(--s6) 0 var(--s2)}
-  .about-grid{grid-template-columns:1fr; gap:var(--s4)}
-  .entry{grid-template-columns:1fr; gap:var(--s2)}
-  .entry .when{padding-top:0}
+@media (max-width:900px){
   .position, .position.flip{grid-template-columns:1fr; gap:var(--s4); padding:var(--s5) 0}
   .position.flip .pbody{order:1}
   .position.flip .pvis{order:2}
-  .opengrid{grid-template-columns:1fr; padding:var(--s4) 0}
-  .brow, .bookhead{grid-template-columns:1fr; gap:var(--s2)}
-  .bookhead{display:none}
-  .brow .bk{padding-top:0}
+  .hero .facts{grid-template-columns:repeat(2, minmax(0,1fr)); max-width:520px}
+  .course{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  :root{--gutter:20px}
+  section{padding:var(--s6) 0 var(--s2)}
+  .hero{min-height:auto}
+  .hero .inner{padding-top:var(--s5); padding-bottom:var(--s5)}
+  .kicker{font-size:.66rem; line-height:1.9; margin-bottom:var(--s3)}
+  .hero .sub{font-size:1rem}
+  .hero .facts{margin-top:var(--s5); gap:var(--s3)}
+  .hero .facts b{font-size:.92rem}
   #readout{display:none}
-  .hero .facts{gap:var(--s2) var(--s3)}
+  .about-grid{grid-template-columns:1fr; gap:var(--s5)}
+  .entry{grid-template-columns:1fr; gap:var(--s2); padding:var(--s4) 0}
+  .entry::before{display:none}
+  .entry .when{padding-top:0; line-height:1.6}
+  .position, .position.flip{grid-template-columns:1fr; gap:var(--s4); padding:var(--s5) 0}
+  .position.flip .pbody{order:1}
+  .position.flip .pvis{order:2}
+  .pvis{padding:var(--s3)}
+  .opengrid{grid-template-columns:1fr; padding:var(--s3) 0 var(--s4)}
+  .brow, .bookhead{grid-template-columns:1fr; gap:6px}
+  .bookhead{display:none}
+  .brow{padding:var(--s3) 0}
+  .brow .bk, .brow .bp{padding-top:0}
+  .course{grid-template-columns:1fr}
+  .sublabel{margin-top:var(--s5)}
+}
+@media (max-width:480px){
+  .par .row{grid-template-columns:1fr; gap:2px}
+  .par .k{padding-top:0}
+  .btn{padding:11px 16px}
+  .hero .cta .btn{flex:1 1 auto; text-align:center}
+  .ob .obrow{grid-template-columns:48px 1fr 52px}
+  .pvis .vhead{flex-wrap:wrap}
 }
 </style>
 </head>
-<body>
+<body class="no-js">
+<script>document.body.classList.remove('no-js')</script>
+<a class="skip" href="#about">Skip to content</a>
 
-<!-- ============ LEFT RAIL ============ -->
+<!-- ============ LEFT RAIL (desktop) ============ -->
 <aside class="rail">
-  <a class="logo" href="#top" aria-label="Shaleen Gorakatar, home">SG<b>_</b></a>
+  <div>
+    <a class="logo" href="#top" aria-label="Shaleen Gorakatar, home">SG<b>_</b></a>
+    <p class="who">SHALEEN GORAKATAR<br><b>AI · DATA · STATISTICS</b></p>
+  </div>
   <nav aria-label="Primary">
     <ul>
       <li><a href="#about">ABOUT<span class="tick" aria-hidden="true">▸</span></a></li>
@@ -423,7 +488,7 @@ footer a:hover{color:var(--bid)}
   <div class="foot">
     <div class="clock" aria-hidden="true">
       VANCOUVER<br><b id="clock">··:··:··</b> PT<br>
-      <span style="color:var(--bid)">●</span> OPEN TO 2027 ROLES
+      <span class="dotlive">●</span> OPEN TO 2027 NEW-GRAD ROLES
     </div>
     <button class="toggle" id="toggle" aria-pressed="false" aria-label="Switch to day theme">
       <span class="pip" aria-hidden="true"></span><span id="tlabel">NIGHT</span>
@@ -431,45 +496,57 @@ footer a:hover{color:var(--bid)}
   </div>
 </aside>
 
-<!-- ============ MOBILE TOP BAR ============ -->
-<div class="topbar">
-  <a class="logo" href="#top">SG<b>_</b></a>
-  <nav aria-label="Primary mobile">
+<!-- ============ MOBILE / TABLET TOP BAR ============ -->
+<div class="topbar" id="topbar">
+  <a class="logo" href="#top" aria-label="Shaleen Gorakatar, home">SG<b>_</b></a>
+  <div class="tb-right">
+    <button class="toggle" id="toggle-m" aria-pressed="false" aria-label="Switch to day theme">
+      <span class="pip" aria-hidden="true"></span>
+    </button>
+    <button class="menubtn" id="menubtn" aria-expanded="false" aria-controls="mnav">
+      <span class="bars" aria-hidden="true"><i></i><i></i></span>MENU
+    </button>
+  </div>
+  <nav class="mnav" id="mnav" aria-label="Primary mobile">
     <ul>
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="#experience">EXPERIENCE</a></li>
-      <li><a href="#projects">PROJECTS</a></li>
-      <li><a href="#skills">SKILLS</a></li>
-      <li><a href="#contact">CONTACT</a></li>
+      <li><a href="#about">ABOUT<span aria-hidden="true">▸</span></a></li>
+      <li><a href="#experience">EXPERIENCE<span aria-hidden="true">▸</span></a></li>
+      <li><a href="#projects">PROJECTS<span aria-hidden="true">▸</span></a></li>
+      <li><a href="#skills">SKILLS<span aria-hidden="true">▸</span></a></li>
+      <li><a href="#contact">CONTACT<span aria-hidden="true">▸</span></a></li>
+      <li><a href="resume.pdf" target="_blank" rel="noopener">RESUME (PDF)<span aria-hidden="true">↗</span></a></li>
     </ul>
+    <p class="mstatus"><span class="dotlive">●</span> OPEN TO NEW-GRAD ROLES · MAY 2027</p>
   </nav>
-  <button class="toggle" id="toggle-m" aria-pressed="false" aria-label="Switch to day theme">
-    <span class="pip" aria-hidden="true"></span>
-  </button>
 </div>
 
 <main id="top">
 
   <!-- ============ HERO ============ -->
   <header class="hero" id="hero">
-    <canvas id="tape" aria-hidden="true"></canvas>
+    <div class="tapewrap" id="tapewrap" aria-hidden="true"><div class="tapeinner" id="tapeinner"><canvas id="tape"></canvas></div></div>
+    <span class="pen" id="pen" aria-hidden="true"></span>
     <div class="wrap inner">
-      <p class="kicker">SHALEEN GORAKATAR <b>·</b> STATISTICS @ UBC <b>·</b> VANCOUVER, BC</p>
-      <h1>I build AI systems<br>and <em>audit the numbers</em>.</h1>
-      <p class="sub">Statistics major who ships production AI: built agentic workflows and RAG pipelines for Fortune 500 clients, plus a real-time prediction-markets exchange on the side. Graduating May 2027.</p>
+      <p class="kicker"><span>SHALEEN GORAKATAR</span> <b>·</b> <span>B.SC. STATISTICS, UBC '27</span> <b>·</b> <span>VANCOUVER, BC</span></p>
+      <h1>I build LLM agents and data pipelines, <em>and measure whether they work.</em></h1>
+      <p class="sub">Statistics student with <strong>15 months of AI and data engineering internships</strong>. At MetricStream I built RAG and agentic workflows that automate compliance work for Fortune 500 clients; at Genpact, AWS data ingestion for a lakehouse migration. Graduating May 2027.</p>
+      <div class="seeking" aria-label="Roles I'm looking for">
+        <span class="lbl">SEEKING ›</span>
+        <span class="chip">AI ENGINEER</span><span class="chip">AI AUTOMATION</span><span class="chip">DATA SCIENTIST</span><span class="chip">DATA ENGINEER</span><span class="chip">AI SOFTWARE ENGINEER</span>
+      </div>
       <div class="cta">
+        <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">RESUME ↗</a>
         <a class="btn" href="https://github.com/shaleengorakatar" target="_blank" rel="noopener">GITHUB</a>
         <a class="btn" href="https://www.linkedin.com/in/shaleengorakatar" target="_blank" rel="noopener">LINKEDIN</a>
-        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">RESUME</a>
       </div>
       <div class="facts" aria-label="Quick facts">
-        <span>CO-OP <b>15 MO (AI + DATA ENG)</b></span>
-        <span>RETRIEVAL <b>1.2M+ PARAGRAPHS</b></span>
-        <span>MARKETS BUILT <b>1,200+</b></span>
-        <span>HACKATHONS WON <b>1 (CURSOR '26)</b></span>
+        <div>RAG CORPUS<b>1.2M+ paras</b></div>
+        <div>HALLUCINATIONS<b>−30%</b></div>
+        <div>AUTHORING TIME<b>≈ −60%</b></div>
+        <div>CURSOR HACKATHON<b>Track win</b></div>
       </div>
     </div>
-    <div id="readout" aria-hidden="true"><b>SG</b> · GEOMETRIC BROWNIAN MOTION<br><span id="ro-val">σ=0.55 · seeded on load</span></div>
+    <div id="readout" aria-hidden="true"><b>dS = μS dt + σS dW</b><br><span id="ro-val">μ=0.10 · σ=0.55</span></div>
   </header>
 
   <!-- ============ ABOUT ============ -->
@@ -477,16 +554,55 @@ footer a:hover{color:var(--bid)}
     <div class="wrap">
       <div class="sechead rv">
         <h2>About</h2>
-        <p class="meta">STATUS <b>LONG AI, LONG STATISTICS</b></p>
+        <p class="meta">STATISTICS <b>×</b> ENGINEERING</p>
       </div>
       <div class="about-grid">
         <div class="rv">
-          <p>I'm a statistician who ended up shipping production AI. Over 15 months of co-op I've built <strong>RAG pipelines over millions of documents</strong>, <strong>agentic workflows for enterprise compliance</strong>, and <strong>data platforms on AWS</strong>. Along the way I learned that the hard part of AI isn't the model, it's the evaluation, reliability, and plumbing around it.</p>
-          <p>My statistics background (inference, stochastic processes, applied ML) means I care about whether a number is actually true: precision metrics, eval methodology, and honest baselines are my thing.</p>
+          <p>I'm a statistics student who has done most of my learning by building. Across two internships I've built <strong>retrieval over 1.2M+ compliance paragraphs</strong>, <strong>agentic LLM applications from client requirement specs</strong>, and <strong>AWS ingestion and monitoring for a lakehouse migration</strong>. The lesson I keep relearning: the model is rarely the hard part. Data quality, retrieval, evaluation and failure handling are.</p>
+          <p>That's where the statistics helps. Inference, experiment design and stochastic processes taught me to ask how a number was produced before trusting it, so I treat an LLM pipeline like any other estimator: define the metric, build a regression set, and track it every time the system changes. That's how the MetricStream RAG pipeline got to a 30% lower hallucination rate.</p>
+          <p>Outside work I build systems end to end: <strong>a real-time prediction-markets exchange</strong> with its own matching engine and settlement logic, and <strong>a multi-agent orchestrator</strong> that won its track at the Cursor Hackathon.</p>
         </div>
         <div class="thesis rv">
-          <p class="label">OPERATING THESIS</p>
+          <p class="label">HOW I WORK</p>
           <p>Any model can produce an answer. The engineering is knowing, and proving, how often it's right.</p>
+          <ol>
+            <li><span>Start from the workflow and the person doing it, not the model.</span></li>
+            <li><span>Write the eval before the prompt; keep a regression set.</span></li>
+            <li><span>Make the pipeline observable: inputs, retrievals, outputs, latency.</span></li>
+            <li><span>Keep a human in the loop wherever an error is expensive.</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <p class="sublabel rv">WHERE I FIT</p>
+      <div class="rv">
+        <div class="bookhead"><span>IF YOU'RE HIRING FOR</span><span>WHAT I'VE ACTUALLY DONE</span><span>EVIDENCE</span></div>
+        <div class="book">
+          <div class="brow">
+            <span class="bk">AI ENGINEER</span>
+            <span class="bi">RAG with pgvector over 1.2M+ paragraphs; chunking strategy and automated regression tests that <span>cut hallucinations 30%</span>; GPT-4o tool calling; fine-tuning off-the-shelf LLMs for a domain.</span>
+            <span class="bp">METRICSTREAM</span>
+          </div>
+          <div class="brow">
+            <span class="bk">AI AUTOMATION</span>
+            <span class="bi">Agentic GRC workflows built from client specs for PepsiCo and Glencore; Whisper + GPT-4o document pipelines that <span>cut authoring time ~60%</span>; Playwright data extraction; human-approval gates.</span>
+            <span class="bp">METRICSTREAM · BRONSON</span>
+          </div>
+          <div class="brow">
+            <span class="bk">DATA SCIENTIST</span>
+            <span class="bi">Statistical inference, experiment design, stochastic processes and statistical learning; Python backtesting of portfolio and risk metrics; <span>eval methodology for LLM systems</span>.</span>
+            <span class="bp">UBC · QUANTICO</span>
+          </div>
+          <div class="brow">
+            <span class="bk">DATA ENGINEER</span>
+            <span class="bi">AWS Glue + S3 ingestion into a lakehouse <span>(30% faster)</span>; PySpark/SQL table-health monitor that caught skew and triggered vacuums during a Fabric migration <span>(34% faster queries)</span>; Power BI pipeline dashboards.</span>
+            <span class="bp">GENPACT</span>
+          </div>
+          <div class="brow">
+            <span class="bk">AI SOFTWARE ENGINEER</span>
+            <span class="bi">FastAPI services; a matching engine with Postgres row-level security for atomic wallet ops; React 18 + WebSocket order books; Express + SSE orchestrator with shared Zod contracts.</span>
+            <span class="bp">CRICMAXX · BRONSON</span>
+          </div>
         </div>
       </div>
     </div>
@@ -497,16 +613,27 @@ footer a:hover{color:var(--bid)}
     <div class="wrap">
       <div class="sechead rv">
         <h2>Experience</h2>
-        <p class="meta">3 ENTRIES · <b>2024 → 2026</b></p>
+        <p class="meta">3 ROLES + EDUCATION · <b>2024 → 2027</b></p>
       </div>
 
       <div class="entry rv">
-        <div class="when">MAY 2025 →<br>APR 2026</div>
+        <div class="when">MAY 2025 →<br>APR 2026<br>12 MONTHS</div>
         <div>
           <h3>MetricStream</h3>
-          <p class="role">AI ENGINEER INTERN · REMOTE · VANCOUVER, BC</p>
-          <p>Built agentic AI applications and RAG pipelines for Fortune 500 GRC clients. Designed retrieval over 1.2M+ paragraphs with pgvector, ran evaluation and prompt-engineering cycles to cut hallucinations, and shipped parallel FastAPI + Whisper pipelines that cut document authoring time by roughly 60%.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">RAG</span><span class="tag">pgvector</span><span class="tag">FastAPI</span><span class="tag">Tool Calling</span><span class="tag">LLM Evals</span></div>
+          <p class="role">AI ENGINEER INTERN · VANCOUVER, BC (REMOTE)</p>
+          <p class="lede">Governance, risk and compliance (GRC) software. I built the LLM side: retrieval, agents and document-generation pipelines for enterprise clients.</p>
+          <ul class="pts">
+            <li><span><b>Retrieval.</b> Built a RAG pipeline in Python with pgvector to search 1.2M+ compliance paragraphs. Reworked knowledge chunking and added automated regression testing, which reduced the hallucination rate by 30%.</span></li>
+            <li><span><b>Agentic applications.</b> Turned client requirement specifications into agentic AI apps in Python and FastAPI, automating GRC workflows for Fortune 500 clients including PepsiCo and Glencore.</span></li>
+            <li><span><b>Parallel pipelines.</b> Engineered parallel pipelines combining GPT-4o, Whisper and OpenAI tool calling for deterministic GRC document generation and incident analysis, reducing authoring time by roughly 60%.</span></li>
+            <li><span><b>End-to-end platform.</b> Built an agentic platform with a custom user-interaction layer and automated Playwright data extraction, and fine-tuned off-the-shelf LLMs into domain-specific models for compliance reporting.</span></li>
+          </ul>
+          <div class="kpis">
+            <span class="kpi">CORPUS <b>1.2M+</b></span>
+            <span class="kpi">HALLUCINATIONS <b>−30%</b></span>
+            <span class="kpi">AUTHORING TIME <b>≈ −60%</b></span>
+          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">pgvector</span><span class="tag">RAG</span><span class="tag">GPT-4o</span><span class="tag">Whisper</span><span class="tag">Tool calling</span><span class="tag">Playwright</span><span class="tag">Fine-tuning</span></div>
         </div>
       </div>
 
@@ -514,19 +641,43 @@ footer a:hover{color:var(--bid)}
         <div class="when">NOV 2024 →<br>SEP 2025</div>
         <div>
           <h3>UBC Quantico</h3>
-          <p class="role">CO-FOUNDER & LEAD ANALYST · VANCOUVER</p>
-          <p>Co-founded UBC's quantitative research club. Led a team of analysts building algorithmic trading strategies and Python backtesting frameworks for portfolio optimization and risk metrics.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Backtesting</span><span class="tag">Quant Research</span></div>
+          <p class="role">CO-FOUNDER & LEAD ANALYST · VANCOUVER, BC</p>
+          <ul class="pts">
+            <li><span><b>Founded and led.</b> Co-founded UBC's quantitative research club and led a team of analysts developing algorithmic trading strategies.</span></li>
+            <li><span><b>Backtesting.</b> Built backtesting frameworks in Python to evaluate portfolio optimization and risk metrics, so strategies were judged on out-of-sample evidence rather than a good-looking equity curve.</span></li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Backtesting</span><span class="tag">Portfolio optimization</span><span class="tag">Risk metrics</span><span class="tag">Team lead</span></div>
         </div>
       </div>
 
       <div class="entry rv">
-        <div class="when">JUL 2024 →<br>SEP 2024</div>
+        <div class="when">JUL 2024 →<br>SEP 2024<br>3 MONTHS</div>
         <div>
           <h3>Genpact</h3>
-          <p class="role">DATA ENGINEER INTERN · GURUGRAM</p>
-          <p>Built data ingestion into a lakehouse with AWS Glue and S3, wrote a PySpark table-health monitor that auto-detected skew during a Microsoft Fabric migration, and shipped Power BI dashboards for pipeline observability.</p>
-          <div class="tags"><span class="tag">PySpark</span><span class="tag">AWS Glue</span><span class="tag">S3</span><span class="tag">SQL</span><span class="tag">Power BI</span></div>
+          <p class="role">DATA ENGINEER INTERN · GURUGRAM, INDIA</p>
+          <ul class="pts">
+            <li><span><b>Ingestion.</b> Built a data ingestion framework on AWS Glue and S3 to integrate external datasets into the data lakehouse, improving ingestion speed by 30%.</span></li>
+            <li><span><b>Table health.</b> Designed an automated table-health monitor in PySpark and SQL that detected data skew and triggered vacuum workflows during the migration to Microsoft Fabric, improving query speed by 34%.</span></li>
+            <li><span><b>Observability.</b> Built real-time Power BI dashboards that gave engineering stakeholders visibility into ingestion latency and pipeline health.</span></li>
+          </ul>
+          <div class="kpis">
+            <span class="kpi">INGESTION SPEED <b>+30%</b></span>
+            <span class="kpi">QUERY SPEED <b>+34%</b></span>
+          </div>
+          <div class="tags"><span class="tag">AWS Glue</span><span class="tag">S3</span><span class="tag">PySpark</span><span class="tag">SQL</span><span class="tag">Microsoft Fabric</span><span class="tag">Power BI</span></div>
+        </div>
+      </div>
+
+      <div class="entry rv">
+        <div class="when">EXPECTED<br>MAY 2027</div>
+        <div>
+          <h3>University of British Columbia</h3>
+          <p class="role">B.SC., MAJOR IN STATISTICS · VANCOUVER, BC</p>
+          <div class="course">
+            <div><h4>STATISTICS</h4><p>Statistical Inference for Data Science, Probability, Stochastic Processes, Design and Analysis of Experiments, Methods for Statistical Learning</p></div>
+            <div><h4>ML & MATHEMATICS</h4><p>Applied Machine Learning, Applied Linear Algebra, Mathematical Proofs</p></div>
+            <div><h4>COMPUTER SCIENCE</h4><p>Data Structures and Algorithms, Software Construction, Relational Databases, Models of Computation</p></div>
+          </div>
         </div>
       </div>
     </div>
@@ -537,7 +688,7 @@ footer a:hover{color:var(--bid)}
     <div class="wrap">
       <div class="sechead rv">
         <h2>Projects</h2>
-        <p class="meta">2 SETTLED · <b style="color:var(--ask)">2 OPEN</b></p>
+        <p class="meta">2 SHIPPED · <b style="color:var(--ask)">2 IN PROGRESS</b></p>
       </div>
 
       <!-- CricMaxx -->
@@ -545,24 +696,32 @@ footer a:hover{color:var(--bid)}
         <div class="pbody">
           <div class="pstat">
             <span class="badge settled">LIVE</span>
-            <span class="pdate">DEC 2025 → PRESENT</span>
+            <span class="pdate">DEC 2025 → MAY 2026 · SOLO</span>
           </div>
           <h3><a href="https://cricmaxx.com" target="_blank" rel="noopener">CricMaxx</a></h3>
-          <p class="pline">REAL-TIME CRICKET PREDICTION MARKETS</p>
+          <p class="pline">REAL-TIME CRICKET PREDICTION-MARKETS EXCHANGE</p>
           <div class="par">
-            <div class="row"><span class="k">PROBLEM</span><span class="v">Prediction markets need a real exchange underneath: matching, settlement, and money that can't go missing under concurrency.</span></div>
-            <div class="row"><span class="k">APPROACH</span><span class="v">Built a <b>FIFO price-time priority matching engine</b> (limit + market orders), WebSocket L2 order-book streaming, an oracle-based resolution engine settling markets from live player stats, and <b>PostgreSQL row-level security</b> for atomic wallet operations.</span></div>
-            <div class="row"><span class="k">RESULT</span><span class="v">A working exchange running <b>1,200+ markets</b>, with optimistic UI over real-time books. React 18 · TypeScript · Supabase.</span></div>
+            <div class="row"><span class="k">PROBLEM</span><span class="v">A prediction market is only as good as the exchange underneath it. Orders have to match fairly, markets have to settle correctly, and balances can't drift under concurrent writes.</span></div>
+            <div class="row"><span class="k">MATCHING</span><span class="v">A <b>FIFO price-time priority matching engine</b> for limit and market orders, with dual-sided pricing and slippage protection so a market order can't walk the book further than the user agreed to.</span></div>
+            <div class="row"><span class="k">SETTLEMENT</span><span class="v"><b>Net-obligation netting</b> collapses offsetting positions to minimise settlement transactions. Wallet operations are atomic, enforced with <b>PostgreSQL row-level security</b>.</span></div>
+            <div class="row"><span class="k">DATA</span><span class="v">Supabase Edge Functions act as secure API proxies with <b>5-minute TTL caching</b>; an <b>oracle-based resolution engine</b> settles markets against live player statistics.</span></div>
+            <div class="row"><span class="k">RESULT</span><span class="v">A working exchange with <b>1,200+ markets</b>, a live L2 order book over WebSockets with optimistic UI updates, and <b>200+ markets settled by the oracle</b>.</span></div>
           </div>
-          <div class="tags"><span class="tag">React 18</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span><span class="tag">WebSockets</span></div>
+          <div class="tags"><span class="tag">React 18</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span><span class="tag">Edge Functions</span><span class="tag">WebSockets</span></div>
           <p class="plinks">
             <a href="https://cricmaxx.com" target="_blank" rel="noopener">cricmaxx.com ↗</a>
             <a href="https://github.com/shaleengorakatar/Cricmaxx" target="_blank" rel="noopener">CODE ↗</a>
           </p>
         </div>
         <div class="pvis">
-          <div class="vhead"><span><span class="dot"></span>L2 BOOK · IND v AUS · TOTAL RUNS &gt; 320</span><span id="ob-mid">0.640</span></div>
+          <div class="vhead"><span><span class="dot"></span>L2 BOOK · IND v AUS · RUNS &gt; 320</span><span id="ob-mid">0.640</span></div>
           <div class="ob" id="ob" aria-hidden="true"></div>
+          <dl class="stack">
+            <dt>PRIORITY</dt><dd>price, then time (FIFO)</dd>
+            <dt>ORDERS</dt><dd>limit · market w/ slippage cap</dd>
+            <dt>FEED</dt><dd>WebSocket L2 depth</dd>
+            <dt>SETTLE</dt><dd>oracle → net obligations</dd>
+          </dl>
           <p class="cap">ILLUSTRATIVE BOOK · THE LIVE ONE RUNS AT CRICMAXX.COM</p>
         </div>
       </article>
@@ -571,58 +730,76 @@ footer a:hover{color:var(--bid)}
       <article class="position flip rv">
         <div class="pbody">
           <div class="pstat">
-            <span class="badge settled">SETTLED · TRACK WIN</span>
-            <span class="pdate">MAY 2026 · 12 HOURS</span>
+            <span class="badge settled">TRACK WINNER</span>
+            <span class="pdate">MAY 2026 · 12 HOURS · TEAM</span>
           </div>
           <h3><a href="https://github.com/cursor-team-bronson/bronson" target="_blank" rel="noopener">Bronson</a></h3>
-          <p class="pline">AGENTIC WORKFLOW ORCHESTRATOR · CURSOR HACKATHON, GREPTILE TRACK WINNER ($600, TEAM)</p>
+          <p class="pline">AGENTIC WORKFLOW ORCHESTRATOR · CURSOR HACKATHON, GREPTILE TRACK ($600)</p>
           <div class="par">
-            <div class="row"><span class="k">PROBLEM</span><span class="v">Agentic pipelines fail silently and act without oversight; orchestration needs structure and a human in the loop.</span></div>
-            <div class="row"><span class="k">APPROACH</span><span class="v"><b>YAML-defined DAG pipelines</b> with human-in-the-loop approval gates and real-time execution monitoring over SSE. Next.js UI, Express orchestrator, shared Zod schemas in an npm-workspaces monorepo.</span></div>
-            <div class="row"><span class="k">RESULT</span><span class="v">Built with a team in 12 hours; <b>won the Greptile track</b> at the Cursor Hackathon, May 2026 ($600).</span></div>
+            <div class="row"><span class="k">PROBLEM</span><span class="v">Multi-agent pipelines are hard to reason about: dependencies are implicit, steps run in the wrong order, and nobody signs off before an agent acts.</span></div>
+            <div class="row"><span class="k">DESIGN</span><span class="v">Pipelines are declared in <b>YAML as a DAG of LLM agents</b>. The orchestrator resolves the graph into <b>parallel execution waves</b> (each wave's dependencies are complete) and pauses at <b>human-approval gates</b>.</span></div>
+            <div class="row"><span class="k">MY PART</span><span class="v">Built the <b>Express orchestration backend</b>, streaming execution state, gate approvals and event logs to a Next.js UI over <b>server-sent events</b>. Designed the <b>shared Zod schemas</b> that validate pipeline definitions and API contracts across the TypeScript monorepo.</span></div>
+            <div class="row"><span class="k">RESULT</span><span class="v">Shipped with a team in 12 hours and <b>won the Greptile track</b> at the Cursor Hackathon.</span></div>
           </div>
-          <div class="tags"><span class="tag">TypeScript</span><span class="tag">Next.js</span><span class="tag">Express</span><span class="tag">SSE</span><span class="tag">Agents</span><span class="tag">Zod</span></div>
+          <div class="tags"><span class="tag">TypeScript</span><span class="tag">Express</span><span class="tag">Next.js</span><span class="tag">SSE</span><span class="tag">Zod</span><span class="tag">Monorepo</span><span class="tag">LLM agents</span></div>
           <p class="plinks"><a href="https://github.com/cursor-team-bronson/bronson" target="_blank" rel="noopener">CODE ↗</a></p>
         </div>
-        <div class="pvis dag">
-          <div class="vhead"><span><span class="dot"></span>PIPELINE · release-notes.yaml</span><span>RUN #47</span></div>
-          <svg viewBox="0 0 380 232" role="img" aria-label="Diagram of a Bronson DAG pipeline: YAML spec flows to plan, then to a human approval gate, which fans out to two parallel execution branches that converge into monitoring">
+        <div class="pvis dag" id="dag">
+          <div class="vhead"><span><span class="dot"></span>PIPELINE · release-notes.yaml</span><span>3 WAVES</span></div>
+          <svg viewBox="0 0 380 240" role="img" aria-label="Diagram of a Bronson pipeline: a YAML spec is planned, waits at a human approval gate, then runs two branches in parallel that converge into monitoring">
             <path class="edge" d="M78 46 H128"/><path class="pulse" d="M78 46 H128"/>
             <path class="edge" d="M198 46 H248"/><path class="pulse d2" d="M198 46 H248"/>
             <path class="edge" d="M283 64 C283 88 140 76 140 100"/><path class="pulse d3" d="M283 64 C283 88 140 76 140 100"/>
             <path class="edge" d="M283 64 C283 84 260 82 260 100"/><path class="pulse d3" d="M283 64 C283 84 260 82 260 100"/>
             <path class="edge" d="M140 136 C140 158 190 150 196 168"/>
             <path class="edge" d="M260 136 C260 158 212 150 206 168"/>
-            <g class="node-g"><rect class="node" x="8" y="28" width="70" height="36" rx="4"/><text x="43" y="50" text-anchor="middle">YAML</text></g>
-            <g class="node-g"><rect class="node" x="128" y="28" width="70" height="36" rx="4"/><text x="163" y="50" text-anchor="middle">PLAN</text></g>
-            <g class="node-g gate"><rect class="node" x="248" y="28" width="70" height="36" rx="4"/><text x="283" y="45" text-anchor="middle">GATE</text><text x="283" y="57" text-anchor="middle" style="font-size:8px">HUMAN ✓</text></g>
-            <g class="node-g"><rect class="node" x="105" y="100" width="70" height="36" rx="4"/><text x="140" y="122" text-anchor="middle">EXEC A</text></g>
-            <g class="node-g"><rect class="node" x="225" y="100" width="70" height="36" rx="4"/><text x="260" y="122" text-anchor="middle">EXEC B</text></g>
-            <g class="node-g"><rect class="node" x="165" y="168" width="72" height="36" rx="4"/><text x="201" y="190" text-anchor="middle">MONITOR</text></g>
-            <text x="8" y="226" style="font-size:9px; fill:var(--faint)">SSE STREAM → UI · PARALLEL BRANCHES AFTER APPROVAL</text>
+            <g><rect class="node" x="8" y="28" width="70" height="36" rx="4"/><text x="43" y="50" text-anchor="middle">YAML</text></g>
+            <g><rect class="node" x="128" y="28" width="70" height="36" rx="4"/><text x="163" y="50" text-anchor="middle">PLAN</text></g>
+            <g class="gate"><rect class="node" x="248" y="28" width="70" height="36" rx="4"/><text x="283" y="45" text-anchor="middle">GATE</text><text x="283" y="57" text-anchor="middle" style="font-size:8px">HUMAN ✓</text></g>
+            <g><rect class="node" x="105" y="100" width="70" height="36" rx="4"/><text x="140" y="122" text-anchor="middle">AGENT A</text></g>
+            <g><rect class="node" x="225" y="100" width="70" height="36" rx="4"/><text x="260" y="122" text-anchor="middle">AGENT B</text></g>
+            <g><rect class="node" x="165" y="168" width="72" height="36" rx="4"/><text x="201" y="190" text-anchor="middle">MONITOR</text></g>
+            <text class="wave" x="8" y="20">WAVE 1</text>
+            <text class="wave" x="8" y="116">WAVE 2</text>
+            <text class="wave" x="8" y="128">PARALLEL</text>
+            <text class="wave" x="8" y="190">WAVE 3</text>
+            <text x="8" y="232" style="font-size:9px; fill:var(--faint)">STATE → SSE → UI · NOTHING RUNS PAST A GATE UNAPPROVED</text>
           </svg>
         </div>
       </article>
 
-      <!-- Open positions -->
+      <!-- In progress -->
+      <p class="sublabel rv">IN PROGRESS · TARGET DECEMBER 2026</p>
       <div class="opengrid">
         <article class="oppos rv">
           <div class="pstat">
-            <span class="badge open">OPEN POSITION</span>
-            <span class="settle mono">SETTLES AUG 2026</span>
+            <span class="badge open">IN PROGRESS</span>
+            <span class="settle mono">TARGET DEC 2026</span>
           </div>
-          <h3>RAG From Scratch</h3>
-          <p>A retrieval pipeline built with no frameworks (chunking, embeddings, vector search) plus an honest eval harness: labeled queries, reported precision/recall. Dockerized, CI via GitHub Actions, deployed.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Embeddings</span><span class="tag">Evals</span><span class="tag">Docker</span><span class="tag">CI/CD</span></div>
+          <h3>RAG From Scratch, With Evals</h3>
+          <p class="why">A retrieval system with no frameworks, built to answer one question honestly: which design choices actually improve retrieval, and by how much?</p>
+          <ul>
+            <li><span>Chunking, embeddings and vector search written directly, so every stage is inspectable.</span></li>
+            <li><span>Hand-labelled query set; recall@k and MRR reported with bootstrap confidence intervals.</span></li>
+            <li><span>Head-to-head comparison of keyword, dense and hybrid retrieval.</span></li>
+            <li><span>Dockerized, with CI running the eval suite on every change, and deployed.</span></li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Embeddings</span><span class="tag">pgvector</span><span class="tag">Evals</span><span class="tag">Docker</span><span class="tag">CI/CD</span></div>
         </article>
         <article class="oppos rv">
           <div class="pstat">
-            <span class="badge open">OPEN POSITION</span>
-            <span class="settle mono">SETTLES SEP 2026</span>
+            <span class="badge open">IN PROGRESS</span>
+            <span class="settle mono">TARGET DEC 2026</span>
           </div>
-          <h3>End-to-End ML</h3>
-          <p>Full-lifecycle machine learning on real, messy data: EDA, feature engineering, model selection with proper cross-validation, MLflow experiment tracking, and a deployed inference API, leaning into the statistics degree.</p>
-          <div class="tags"><span class="tag">scikit-learn</span><span class="tag">MLflow</span><span class="tag">FastAPI</span><span class="tag">Statistics</span></div>
+          <h3>End-to-End ML on Messy Data</h3>
+          <p class="why">The full lifecycle on a real, messy dataset, leaning on the statistics degree rather than the model zoo.</p>
+          <ul>
+            <li><span>EDA and feature engineering with documented data-quality decisions.</span></li>
+            <li><span>Model selection with proper cross-validation, a locked held-out test set and calibration checks.</span></li>
+            <li><span>Experiment tracking in MLflow so every result is reproducible.</span></li>
+            <li><span>A FastAPI inference service with input validation, deployed.</span></li>
+          </ul>
+          <div class="tags"><span class="tag">scikit-learn</span><span class="tag">MLflow</span><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">Statistics</span></div>
         </article>
       </div>
     </div>
@@ -633,29 +810,39 @@ footer a:hover{color:var(--bid)}
     <div class="wrap">
       <div class="sechead rv">
         <h2>Skills</h2>
-        <p class="meta">CLAIMS WITH <b>RECEIPTS</b></p>
+        <p class="meta">EACH ONE <b>USED SOMEWHERE ABOVE</b></p>
       </div>
       <div class="rv">
-        <div class="bookhead"><span>DESK</span><span>INSTRUMENTS</span><span>DEPLOYED IN</span></div>
+        <div class="bookhead"><span>AREA</span><span>TOOLS & METHODS</span><span>USED AT</span></div>
         <div class="book">
           <div class="brow">
             <span class="bk">LANGUAGES</span>
-            <span class="bi">Python (PySpark), SQL, R, TypeScript / JavaScript</span>
-            <span class="bp">EVERYTHING BELOW</span>
+            <span class="bi">Python, SQL, R, TypeScript, JavaScript, HTML/CSS</span>
+            <span class="bp">ACROSS ALL WORK</span>
           </div>
           <div class="brow">
-            <span class="bk">AI / ML</span>
-            <span class="bi">RAG & agentic workflows, LLM tool calling & evals, scikit-learn, Hugging Face, prompt engineering</span>
+            <span class="bk">LLMS & AGENTS</span>
+            <span class="bi">RAG, agentic workflows, function / tool calling, LangChain, GPT-4o, OpenAI Whisper, pgvector, LLM evaluation and regression testing, fine-tuning</span>
             <span class="bp">METRICSTREAM · BRONSON</span>
           </div>
           <div class="brow">
-            <span class="bk">BACKEND / CLOUD</span>
-            <span class="bi">FastAPI, REST APIs, PostgreSQL, pgvector, Supabase, AWS (S3, Glue, Redshift), Docker, GitHub Actions</span>
-            <span class="bp">METRICSTREAM · GENPACT · CRICMAXX</span>
+            <span class="bk">MACHINE LEARNING</span>
+            <span class="bi">scikit-learn, TensorFlow, Hugging Face, AWS SageMaker</span>
+            <span class="bp">UBC · METRICSTREAM</span>
+          </div>
+          <div class="brow">
+            <span class="bk">DATA ENGINEERING</span>
+            <span class="bi">PySpark, SQL, PostgreSQL, AWS (S3, Glue, Redshift), Microsoft Fabric, Power BI</span>
+            <span class="bp">GENPACT · METRICSTREAM</span>
+          </div>
+          <div class="brow">
+            <span class="bk">BACKEND & APPS</span>
+            <span class="bi">FastAPI, REST APIs, Express, Supabase, Docker, React 18, Tailwind CSS, WebSockets, Playwright, Git/GitHub, Jira</span>
+            <span class="bp">METRICSTREAM · CRICMAXX · BRONSON</span>
           </div>
           <div class="brow">
             <span class="bk">STATISTICS</span>
-            <span class="bi">Statistical inference, stochastic processes, experiment design, backtesting & risk metrics</span>
+            <span class="bi">Statistical inference, probability, stochastic processes, design of experiments, statistical learning, backtesting and risk metrics</span>
             <span class="bp">UBC · QUANTICO · CRICMAXX</span>
           </div>
         </div>
@@ -668,15 +855,15 @@ footer a:hover{color:var(--bid)}
     <div class="wrap contact">
       <div class="sechead rv">
         <h2>Contact</h2>
-        <p class="meta">SPREAD IS <b>TIGHT</b> · ONE EMAIL AWAY</p>
+        <p class="meta">NEW GRAD · <b>AVAILABLE MAY 2027</b></p>
       </div>
       <div class="rv">
-        <p>I'm looking for AI engineering and data science roles in Canada starting 2027, and I'm always happy to talk about RAG evals, prediction markets, or cricket.</p>
+        <p>I'm looking for <strong>new-grad roles starting May 2027</strong> in AI engineering, AI automation, data science and data engineering, in Vancouver, Toronto or remote. If you're hiring, or want to talk about LLM evaluation, prediction markets or cricket, email is the fastest way to reach me.</p>
         <a class="bigmail" href="mailto:gorakatarshaleen@gmail.com">gorakatarshaleen@gmail.com</a>
         <div class="cta">
-          <a class="btn" href="https://github.com/shaleengorakatar" target="_blank" rel="noopener">GITHUB</a>
+          <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">RESUME.PDF ↗</a>
           <a class="btn" href="https://www.linkedin.com/in/shaleengorakatar" target="_blank" rel="noopener">LINKEDIN</a>
-          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">RESUME.PDF</a>
+          <a class="btn" href="https://github.com/shaleengorakatar" target="_blank" rel="noopener">GITHUB</a>
         </div>
       </div>
     </div>
@@ -684,7 +871,7 @@ footer a:hover{color:var(--bid)}
 
   <footer>
     <div class="wrap">
-      <span>© 2026 SHALEEN GORAKATAR · BUILT BY HAND, NO TEMPLATE</span>
+      <span>© 2026 SHALEEN GORAKATAR · VANCOUVER, BC · UPDATED OCT 2026</span>
       <span><a href="https://github.com/shaleengorakatar" target="_blank" rel="noopener">GITHUB</a> · <a href="https://www.linkedin.com/in/shaleengorakatar" target="_blank" rel="noopener">LINKEDIN</a></span>
     </div>
   </footer>
@@ -695,13 +882,14 @@ footer a:hover{color:var(--bid)}
 (function(){
   'use strict';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var themeHooks = [];
 
   /* ---------- theme ---------- */
-  var root = document.documentElement;
   function getTheme(){ try{ return localStorage.getItem('sg-theme'); }catch(e){ return null; } }
-  function setTheme(t){
+  function setTheme(t, persist){
     root.setAttribute('data-theme', t);
-    try{ localStorage.setItem('sg-theme', t); }catch(e){}
+    if(persist){ try{ localStorage.setItem('sg-theme', t); }catch(e){} }
     var night = (t === 'night');
     ['toggle','toggle-m'].forEach(function(id){
       var b = document.getElementById(id);
@@ -711,26 +899,40 @@ footer a:hover{color:var(--bid)}
     });
     var l = document.getElementById('tlabel');
     if(l) l.textContent = night ? 'NIGHT' : 'DAY';
+    var mc = document.querySelector('meta[name="theme-color"]');
+    if(mc) mc.setAttribute('content', night ? '#0A0C10' : '#F5F4F0');
+    themeHooks.forEach(function(fn){ fn(); });
   }
-  var saved = getTheme();
-  if(saved){ setTheme(saved); }
-  else if(window.matchMedia('(prefers-color-scheme: light)').matches){ setTheme('day'); }
-  function flip(){ setTheme(root.getAttribute('data-theme') === 'night' ? 'day' : 'night'); }
+  setTheme(root.getAttribute('data-theme') || 'night', false);
+  function flip(){ setTheme(root.getAttribute('data-theme') === 'night' ? 'day' : 'night', true); }
   ['toggle','toggle-m'].forEach(function(id){
     var b = document.getElementById(id);
     if(b) b.addEventListener('click', flip);
   });
 
-  /* ---------- clock ---------- */
+  /* ---------- mobile menu ---------- */
+  var menuBtn = document.getElementById('menubtn');
+  var mnav = document.getElementById('mnav');
+  function setMenu(open){
+    if(!menuBtn || !mnav) return;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    mnav.classList.toggle('open', open);
+  }
+  if(menuBtn && mnav){
+    menuBtn.addEventListener('click', function(e){ e.stopPropagation(); setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'); });
+    mnav.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', function(e){ if(!e.target.closest('#topbar')) setMenu(false); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ setMenu(false); } });
+    window.addEventListener('resize', function(){ if(window.innerWidth > 1120) setMenu(false); });
+  }
+
+  /* ---------- clock (desktop rail only) ---------- */
   var clockEl = document.getElementById('clock');
+  var fmt = null;
+  try{ fmt = new Intl.DateTimeFormat('en-CA', {timeZone:'America/Vancouver', hour12:false, hour:'2-digit', minute:'2-digit', second:'2-digit'}); }catch(e){}
   function tickClock(){
-    if(!clockEl) return;
-    try{
-      clockEl.textContent = new Intl.DateTimeFormat('en-CA', {
-        timeZone:'America/Vancouver', hour12:false,
-        hour:'2-digit', minute:'2-digit', second:'2-digit'
-      }).format(new Date());
-    }catch(e){ clockEl.textContent = new Date().toTimeString().slice(0,8); }
+    if(!clockEl || clockEl.offsetParent === null) return;
+    clockEl.textContent = fmt ? fmt.format(new Date()) : new Date().toTimeString().slice(0,8);
   }
   tickClock(); setInterval(tickClock, 1000);
 
@@ -739,216 +941,312 @@ footer a:hover{color:var(--bid)}
   if(reduced || !('IntersectionObserver' in window)){
     rvs.forEach(function(el){ el.classList.add('in'); });
   } else {
-    rvs.forEach(function(el, i){ el.style.transitionDelay = ((i % 3) * 70) + 'ms'; });
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
       });
-    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    }, {threshold:.08, rootMargin:'0px 0px -30px 0px'});
     rvs.forEach(function(el){ io.observe(el); });
   }
 
-  /* ---------- active nav ---------- */
+  /* ---------- active nav (desktop rail) ---------- */
   var navLinks = document.querySelectorAll('.rail nav a');
   var secs = ['about','experience','projects','skills','contact'].map(function(id){ return document.getElementById(id); });
   if('IntersectionObserver' in window){
     var nio = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
         if(en.isIntersecting){
-          navLinks.forEach(function(a){
-            a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id);
-          });
+          navLinks.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
         }
       });
     }, {rootMargin:'-40% 0px -55% 0px'});
     secs.forEach(function(s){ if(s) nio.observe(s); });
   }
 
-  /* ---------- hero tape: geometric Brownian motion ---------- */
+  /* ---------- run a callback only while an element is on screen ---------- */
+  function whileVisible(el, onShow, onHide){
+    if(!el) return;
+    var onScreen = true;
+    function update(){ (onScreen && !document.hidden) ? onShow() : onHide(); }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ onScreen = es[0].isIntersecting; update(); }).observe(el);
+    }
+    document.addEventListener('visibilitychange', update);
+  }
+
+  /* ---------- hero tape: geometric Brownian motion ----------
+     Performance design:
+     - the grid is CSS; colours and gradients are cached and rebuilt only on theme change / resize
+     - the canvas backing store is capped in pixels (each redraw is uploaded to the GPU)
+     - REVEAL: the full path is drawn ONCE, then uncovered by sliding a clipping wrapper with
+       GPU-only transforms, so the first seconds cost no canvas redraws at all
+     - DRIFT: the line moves ~3px/s, so it is redrawn at ~12fps; the live dot is a DOM element
+       moved by transform every frame, so it still glides smoothly
+     - everything pauses while the hero is off screen or the tab is hidden */
   var cv = document.getElementById('tape');
   var hero = document.getElementById('hero');
+  var wrapEl = document.getElementById('tapewrap');
+  var innerEl = document.getElementById('tapeinner');
+  var pen = document.getElementById('pen');
   var roVal = document.getElementById('ro-val');
   var ctx = cv && cv.getContext ? cv.getContext('2d') : null;
-  if(ctx){
-    var W = 0, H = 0, dpr = 1;
-    var N = 260, prices = [], mu = 0.10, sigma = 0.55, dt = 1/252;
-    var progress = reduced ? 1 : 0;
-    var mouse = null;
+  if(ctx && hero && wrapEl && innerEl && pen){
+    var W = 0, H = 0, dpr = 1, narrow = false;
+    var N = Math.round(Math.min(240, Math.max(90, (hero.clientWidth || 1200) / 5))), prices = [], mu = 0.10, sigma = 0.55, dt = 1/252;
+    var drift = (mu - 0.5*sigma*sigma)*dt, vol = sigma*Math.sqrt(dt);
+    var REVEAL_MS = 1500, STEP_MS = 1600, REDRAW_MS = 80, MAX_PX = 1.6e6;
+    var revealT = 0, revealed = false, phase = 0;
+    var smMn = 0, smMx = 1, tgtMn = 0, tgtMx = 1;
+    var raf = 0, last = null, sinceDraw = 1e9, booted = false, running = false;
+    var bidCol = '#2DD4A7', faintCol = '#566070', rgb = [45,212,167];
+    var strokeGrad = null, fillGrad = null;
+    var mouse = null, roLast = 0, liveP = 1;
+    var finePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
 
-    function css(name){ return getComputedStyle(root).getPropertyValue(name).trim(); }
-
-    function seed(){
-      prices = [1];
-      for(var i = 1; i < N; i++){
-        var z = boxMuller();
-        prices.push(prices[i-1] * Math.exp((mu - 0.5*sigma*sigma)*dt + sigma*Math.sqrt(dt)*z));
-      }
-    }
-    function boxMuller(){
+    function gauss(){
       var u = 0, v = 0;
       while(u === 0) u = Math.random();
       while(v === 0) v = Math.random();
       return Math.sqrt(-2*Math.log(u)) * Math.cos(2*Math.PI*v);
     }
-    function resize(){
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = hero.clientWidth; H = hero.clientHeight;
-      cv.width = W * dpr; cv.height = H * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    function bounds(){
+    function nextPrice(p){ return p * Math.exp(drift + vol*gauss()); }
+    function computeBounds(){
       var mn = Infinity, mx = -Infinity;
       for(var i = 0; i < prices.length; i++){
         if(prices[i] < mn) mn = prices[i];
         if(prices[i] > mx) mx = prices[i];
       }
       var pad = (mx - mn) * 0.25 || 0.1;
-      return [mn - pad, mx + pad];
+      tgtMn = mn - pad; tgtMx = mx + pad;
     }
-    var smMn = null, smMx = null;      // smoothed scale
-    var phase = 0;                     // 0..1 fraction of one step scrolled
-    var STEP_MS = 1600;                // time per data step
-    var lastTs = null;
+    function seed(){
+      prices = [1];
+      for(var i = 1; i < N; i++) prices.push(nextPrice(prices[i-1]));
+      prices.push(nextPrice(prices[N-1]));        // one point waiting just past the right edge
+      computeBounds(); smMn = tgtMn; smMx = tgtMx;
+    }
+    function parseColor(c){
+      c = c.trim();
+      if(c.charAt(0) === '#'){
+        if(c.length === 4) c = '#' + c[1]+c[1]+c[2]+c[2]+c[3]+c[3];
+        return [parseInt(c.substr(1,2),16), parseInt(c.substr(3,2),16), parseInt(c.substr(5,2),16)];
+      }
+      var m = c.match(/\d+/g); return m ? [+m[0], +m[1], +m[2]] : [45,212,167];
+    }
+    function rgba(a){ return 'rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a + ')'; }
+    function readColors(){
+      var cs = getComputedStyle(root);
+      bidCol = cs.getPropertyValue('--bid').trim() || bidCol;
+      faintCol = cs.getPropertyValue('--faint').trim() || faintCol;
+      rgb = parseColor(bidCol);
+    }
+    function buildGradients(){
+      // fade the line where it sits behind the headline so the text stays readable
+      strokeGrad = ctx.createLinearGradient(0, 0, W, 0);
+      fillGrad = ctx.createLinearGradient(0, 0, W, 0);
+      if(narrow){
+        strokeGrad.addColorStop(0, rgba(.13)); strokeGrad.addColorStop(1, rgba(.3));
+        fillGrad.addColorStop(0, rgba(0)); fillGrad.addColorStop(1, rgba(.035));
+      } else {
+        strokeGrad.addColorStop(0, rgba(.16)); strokeGrad.addColorStop(.5, rgba(.42)); strokeGrad.addColorStop(1, rgba(.95));
+        fillGrad.addColorStop(0, rgba(0)); fillGrad.addColorStop(1, rgba(.07));
+      }
+    }
+    function resize(){
+      var w = hero.clientWidth, h = hero.clientHeight;
+      if(w === W && h === H) return false;
+      W = w; H = h; narrow = W < 760;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      if(W * H * dpr * dpr > MAX_PX) dpr = Math.max(1, Math.sqrt(MAX_PX / (W * H)));
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      buildGradients();
+      return true;
+    }
+    function Y(p){ return H - ((p - smMn) / ((smMx - smMn) || 1)) * H; }
+    function stepW(){ return W / (N - 1); }
+
+    // draws the whole path (reveal hides part of it with the clip wrapper)
     function draw(){
       ctx.clearRect(0, 0, W, H);
-      var b = bounds();
-      if(smMn === null){ smMn = b[0]; smMx = b[1]; }
-      smMn += (b[0] - smMn) * 0.04;    // ease the scale, never snap
-      smMx += (b[1] - smMx) * 0.04;
-      var mn = smMn, mx = smMx;
-      var bid = css('--bid'), faint = css('--faint'), gridC = css('--grid');
-
-      // grid
-      ctx.strokeStyle = gridC; ctx.lineWidth = 1;
-      for(var gy = 0; gy <= 6; gy++){
-        var yy = (H/6) * gy;
-        ctx.beginPath(); ctx.moveTo(0, yy); ctx.lineTo(W, yy); ctx.stroke();
-      }
-      // price path — shifted left by sub-step phase for continuous motion
-      var upto = progress < 1 ? Math.max(2, Math.floor(N * progress)) : prices.length;
-      var step = W / (N - 1);
-      var revealed = progress >= 1;
-      var shift = revealed ? phase * step : 0;
-      var x = function(i){ return i * step - shift; };
-      var y = function(p){ return H - ((p - mn) / (mx - mn)) * H; };
+      if(W === 0 || H === 0) return;
+      var step = stepW(), shift = revealed ? phase * step : 0;
+      var n = prices.length;
       ctx.beginPath();
-      for(var i = 0; i < upto; i++){
-        if(i === 0) ctx.moveTo(x(0), y(prices[0]));
-        else ctx.lineTo(x(i), y(prices[i]));
-      }
-      ctx.strokeStyle = bid; ctx.lineWidth = 1.6;
-      ctx.globalAlpha = 0.85; ctx.stroke();
+      ctx.moveTo(-shift, Y(prices[0]));
+      for(var i = 1; i < n; i++) ctx.lineTo(i * step - shift, Y(prices[i]));
+      ctx.strokeStyle = strokeGrad; ctx.lineWidth = 1.6; ctx.lineJoin = 'round';
+      ctx.stroke();
+      ctx.lineTo((n - 1) * step - shift, H); ctx.lineTo(-shift, H); ctx.closePath();
+      ctx.fillStyle = fillGrad; ctx.fill();
 
-      // fill under path
-      ctx.lineTo(x(upto - 1), H); ctx.lineTo(x(0), H); ctx.closePath();
-      ctx.globalAlpha = 0.05; ctx.fillStyle = bid; ctx.fill();
-      ctx.globalAlpha = 1;
-
-      // live tick marker: pinned to right edge, price interpolated between steps
-      var live;
-      if(revealed){
-        var a = prices[prices.length - 2], bpt = prices[prices.length - 1];
-        live = a + (bpt - a) * phase;
-        ctx.beginPath(); ctx.arc(W - 2, y(live), 3, 0, Math.PI*2);
-      } else {
-        live = prices[upto - 1];
-        ctx.beginPath(); ctx.arc(x(upto - 1), y(live), 3, 0, Math.PI*2);
-      }
-      ctx.fillStyle = bid; ctx.fill();
-
-      // crosshair
-      if(mouse && !reduced){
-        ctx.strokeStyle = faint; ctx.lineWidth = 1;
+      if(mouse && finePointer){
+        ctx.strokeStyle = faintCol; ctx.lineWidth = 1; ctx.globalAlpha = .5;
         ctx.setLineDash([3, 5]);
-        ctx.globalAlpha = 0.5;
-        ctx.beginPath(); ctx.moveTo(mouse.x, 0); ctx.lineTo(mouse.x, H); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(0, mouse.y); ctx.lineTo(W, mouse.y); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(mouse.x + .5, 0); ctx.lineTo(mouse.x + .5, H); ctx.moveTo(0, mouse.y + .5); ctx.lineTo(W, mouse.y + .5); ctx.stroke();
         ctx.setLineDash([]); ctx.globalAlpha = 1;
-        var ti = Math.min(N - 1, Math.max(0, Math.round(((mouse.x + shift) / W) * (N - 1))));
-        if(roVal) roVal.textContent = 't=' + ti + ' · p=' + (prices[Math.min(ti, upto-1)] || 1).toFixed(4) + ' · σ=0.55';
-      } else if(roVal){
-        roVal.textContent = 'σ=0.55 · p=' + live.toFixed(4);
       }
+      sinceDraw = 0;
     }
 
-    function loop(ts){
-      if(lastTs === null) lastTs = ts;
-      var dtms = Math.min(ts - lastTs, 100);   // clamp tab-switch jumps
-      lastTs = ts;
-      if(progress < 1){
-        progress = Math.min(1, progress + dtms / 3200);  // time-based reveal (~3.2s)
-        if(progress >= 1 && prices.length === N){
-          var z0 = boxMuller();                           // extra point sits just off the right edge
-          prices.push(prices[prices.length-1] * Math.exp((mu - 0.5*sigma*sigma)*dt + sigma*Math.sqrt(dt)*z0));
+    // price on the path at screen x (linear between samples)
+    function priceAt(x){
+      var step = stepW(), shift = revealed ? phase * step : 0;
+      var fi = (x + shift) / step, i = Math.max(0, Math.min(prices.length - 2, Math.floor(fi))), f = fi - i;
+      return prices[i] + (prices[i+1] - prices[i]) * Math.max(0, Math.min(1, f));
+    }
+    function placePen(x){
+      liveP = priceAt(x);
+      pen.style.transform = 'translate(' + x.toFixed(1) + 'px,' + Y(liveP).toFixed(1) + 'px)';
+    }
+    function setClip(x){
+      if(x >= W){ wrapEl.style.transform = innerEl.style.transform = ''; return; }
+      var off = (W - x).toFixed(1);
+      wrapEl.style.transform = 'translateX(-' + off + 'px)';
+      innerEl.style.transform = 'translateX(' + off + 'px)';
+    }
+    function updateReadout(){
+      if(!roVal) return;
+      var now = performance.now();
+      if(now - roLast < 200) return;
+      roLast = now;
+      var txt;
+      if(mouse && finePointer){
+        var ti = Math.min(N - 1, Math.max(0, Math.round((mouse.x + (revealed ? phase * stepW() : 0)) / stepW())));
+        txt = 't=' + ti + ' · S=' + prices[ti].toFixed(4) + ' · σ=0.55';
+      } else txt = 'μ=0.10 · σ=0.55 · S=' + liveP.toFixed(4);
+      if(roVal.textContent !== txt) roVal.textContent = txt;
+    }
+    function renderStatic(){                 // full, finished chart (reduced motion / paused states)
+      draw(); setClip(W); placePen(W - 4); updateReadout();
+    }
+
+    function frame(ts){
+      raf = 0;
+      if(!running) return;
+      if(last === null) last = ts;
+      var d = Math.min(ts - last, revealed ? 100 : 34);   // never jump after a stall or tab switch
+      last = ts;
+      if(!revealed){
+        revealT += d;
+        var t = Math.min(1, revealT / REVEAL_MS), ease = 1 - Math.pow(1 - t, 3);
+        var x = ease * W;
+        setClip(x); placePen(Math.min(x, W - 4));
+        if(t >= 1){
+          revealed = true; phase = 0;
+          wrapEl.style.willChange = innerEl.style.willChange = 'auto';
         }
-      } else if(!reduced){
-        phase += dtms / STEP_MS;
-        while(phase >= 1){                      // step boundary: append + drop one point
+      } else {
+        phase += d / STEP_MS;
+        var stepped = false;
+        while(phase >= 1){
           phase -= 1;
-          var z = boxMuller();
-          prices.push(prices[prices.length-1] * Math.exp((mu - 0.5*sigma*sigma)*dt + sigma*Math.sqrt(dt)*z));
+          prices.push(nextPrice(prices[prices.length - 1]));
           prices.shift();
+          stepped = true;
         }
+        if(stepped) computeBounds();
+        var kk = 1 - Math.exp(-d / 500);       // time-based easing of the y-scale
+        smMn += (tgtMn - smMn) * kk; smMx += (tgtMx - smMx) * kk;
+        sinceDraw += d;
+        if(sinceDraw >= REDRAW_MS || mouse) draw();
+        placePen(W - 4);
       }
-      draw();
-      if(!reduced || progress < 1) requestAnimationFrame(loop);
+      updateReadout();
+      raf = requestAnimationFrame(frame);
+    }
+    function start(){
+      if(running || reduced || !booted) return;
+      running = true; last = null;
+      if(!raf) raf = requestAnimationFrame(frame);
+    }
+    function stop(){
+      running = false;
+      if(raf){ cancelAnimationFrame(raf); raf = 0; }
     }
 
-    seed(); resize();
-    window.addEventListener('resize', function(){ resize(); draw(); });
-    hero.addEventListener('mousemove', function(e){
-      var r = cv.getBoundingClientRect();
-      mouse = {x: e.clientX - r.left, y: e.clientY - r.top};
-    });
-    hero.addEventListener('mouseleave', function(){ mouse = null; });
-    if(reduced){ draw(); } else { requestAnimationFrame(loop); }
+    readColors(); seed(); resize();
+    if(reduced){ revealed = true; renderStatic(); }
+    else { setClip(0); pen.style.opacity = '0'; draw(); }   // path is drawn once, fully hidden until the reveal
+
+    themeHooks.push(function(){ readColors(); buildGradients(); draw(); });
+    function onResize(){ if(resize()){ draw(); if(revealed) placePen(W - 4); else setClip(Math.min(W, (1 - Math.pow(1 - Math.min(1, revealT / REVEAL_MS), 3)) * W)); } }
+    if('ResizeObserver' in window) new ResizeObserver(onResize).observe(hero);
+    else window.addEventListener('resize', onResize);
+    if(finePointer){
+      hero.addEventListener('mousemove', function(e){
+        var r = cv.getBoundingClientRect();
+        mouse = {x: Math.round(e.clientX - r.left), y: Math.round(e.clientY - r.top)};
+        if(!running){ draw(); updateReadout(); }
+      });
+      hero.addEventListener('mouseleave', function(){ mouse = null; draw(); });
+    }
+
+    var heroVisible = true;
+    whileVisible(hero, function(){ heroVisible = true; start(); }, function(){ heroVisible = false; stop(); });
+
+    // Start the reveal once the page has finished its own load work, so the two don't compete.
+    function boot(){
+      if(booted || reduced) return; booted = true;
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        pen.style.opacity = '';
+        if(heroVisible && !document.hidden) start();
+      }); });
+    }
+    if(document.readyState === 'complete') boot();
+    else { window.addEventListener('load', boot); setTimeout(boot, 1200); }
   }
 
   /* ---------- CricMaxx order book widget ---------- */
   var ob = document.getElementById('ob');
   var obMid = document.getElementById('ob-mid');
   if(ob){
-    var mid = 0.640;
-    var asks = [], bids = [];
+    var mid = 0.640, asks = [], bids = [], rows = [], timer = 0;
     function rint(a, b){ return Math.floor(a + Math.random() * (b - a)); }
-    function build(){
+    function levels(){
       asks = []; bids = [];
       for(var i = 4; i >= 0; i--) asks.push({p: mid + 0.005*(i+1), s: rint(40, 900)});
       for(var j = 0; j < 5; j++)  bids.push({p: mid - 0.005*(j+1), s: rint(40, 900)});
     }
-    function renderOB(){
-      var maxs = 900;
+    function buildDom(){
       var html = '';
-      asks.forEach(function(r){
-        html += '<div class="obrow a"><span class="px">' + r.p.toFixed(3) + '</span>' +
-          '<span class="depth" style="transform:scaleX(' + (r.s/maxs).toFixed(3) + ')"></span>' +
-          '<span></span><span class="sz">' + r.s + '</span></div>';
-      });
-      html += '<div class="spread"><span>SPREAD</span><b>0.010</b><span>MID ' + mid.toFixed(3) + '</span></div>';
-      bids.forEach(function(r){
-        html += '<div class="obrow b"><span class="px">' + r.p.toFixed(3) + '</span>' +
-          '<span class="depth" style="transform:scaleX(' + (r.s/maxs).toFixed(3) + ')"></span>' +
-          '<span></span><span class="sz">' + r.s + '</span></div>';
-      });
+      for(var i = 0; i < 5; i++) html += '<div class="obrow a"><span class="px"></span><span class="depth"></span><span></span><span class="sz"></span></div>';
+      html += '<div class="spread"><span>SPREAD</span><b>0.010</b><span class="midv"></span></div>';
+      for(var j = 0; j < 5; j++) html += '<div class="obrow b"><span class="px"></span><span class="depth"></span><span></span><span class="sz"></span></div>';
       ob.innerHTML = html;
+      rows = Array.prototype.slice.call(ob.querySelectorAll('.obrow'));
+    }
+    function render(){
+      var all = asks.concat(bids);
+      rows.forEach(function(r, i){
+        r.children[0].textContent = all[i].p.toFixed(3);
+        r.children[1].style.transform = 'scaleX(' + (all[i].s / 900).toFixed(3) + ')';
+        r.children[3].textContent = all[i].s;
+      });
+      ob.querySelector('.midv').textContent = 'MID ' + mid.toFixed(3);
       if(obMid) obMid.textContent = mid.toFixed(3);
     }
-    build(); renderOB();
+    function tick(){
+      for(var k = 0; k < 2; k++){
+        var side = Math.random() < 0.5 ? asks : bids;
+        side[rint(0, side.length)].s = rint(40, 900);
+      }
+      if(Math.random() < 0.22){
+        mid = Math.min(0.9, Math.max(0.1, mid + (Math.random() < 0.5 ? -0.005 : 0.005)));
+        levels();
+      }
+      render();
+    }
+    levels(); buildDom(); render();
     if(!reduced){
-      setInterval(function(){
-        // mutate a couple of sizes, occasionally walk the mid
-        for(var k = 0; k < 2; k++){
-          var side = Math.random() < 0.5 ? asks : bids;
-          side[rint(0, side.length)].s = rint(40, 900);
-        }
-        if(Math.random() < 0.22){
-          mid = Math.min(0.9, Math.max(0.1, mid + (Math.random() < 0.5 ? -0.005 : 0.005)));
-          build();
-        }
-        renderOB();
-      }, 1100);
+      whileVisible(ob, function(){ if(!timer) timer = setInterval(tick, 1100); },
+                       function(){ if(timer){ clearInterval(timer); timer = 0; } });
     }
   }
+
+  /* ---------- pause the DAG animation when off screen ---------- */
+  var dag = document.getElementById('dag');
+  whileVisible(dag, function(){ dag.classList.remove('paused'); }, function(){ dag.classList.add('paused'); });
 })();
 </script>
 </body>
